@@ -1,0 +1,32 @@
+
+<div class="row">
+  <div class="span16">
+    <form>
+      <div class="clearfix">
+        <div class="input">
+          <input type="text" class="span8" />
+          <a class="btn primary" href="#">Search</a>
+          <br />
+          <span class="example-search">Examples: open set, induction,
+            Cauchy</a>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span16">
+    <iframe width="420" height="315" src="http://www.youtube.com/embed/<%= @items.first.video_id unless @items.empty? %>" frameborder="0" allowfullscreen></iframe>
+    <ul id="list">
+    <% @items.each do |item| %>
+      <li>
+        <span class="label"><%= item.type %></span>
+        <span class="item-name"><%= item.name %></span>
+        <p><%= item.content %></p>
+        <a href="#">wiki</a> <a href="#">video</a></p>
+      </li>
+    <% end %>
+    </ul>
+  </div>
+</div>

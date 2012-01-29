@@ -1,5 +1,6 @@
 Rudini::Application.routes.draw do
-  get "items/show"
+  root :to => "items#index"
+  resources :items, :only => :index
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
