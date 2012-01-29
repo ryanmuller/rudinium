@@ -16,15 +16,17 @@
 </div>
 
 <div class="row">
-  <div class="span16">
-    <iframe width="420" height="315" src="http://www.youtube.com/embed/<%= @items.first.video_id unless @items.empty? %>" frameborder="0" allowfullscreen></iframe>
+  <div class="span8">
+    <div id="video" style="width: 420px;height: 315px"></div>
+  </div>
+  <div class="span8">
     <ul id="list">
     <% @items.each do |item| %>
       <li>
-        <span class="label"><%= item.type %></span>
+        <span class="label"><%= item.label %></span>
         <span class="item-name"><%= item.name %></span>
         <p><%= item.content %></p>
-        <a href="#">wiki</a> <a href="#">video</a></p>
+        <a href="#" data-videoid="<%= item.video_id %>" data-start="<%= item.video_time %>" class="play-btn">Watch!</a>
       </li>
     <% end %>
     </ul>
