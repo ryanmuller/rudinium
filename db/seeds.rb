@@ -8,7 +8,8 @@
 
 Item.all.each { |i| i.destroy }
 
-book = Spreadsheet.open('/Users/ramuller/src/rudini/data/data.xls')
+DATA_FILE = File.join( File.dirname(__FILE__), '..', 'data/data.xls' )
+book = Spreadsheet.open(DATA_FILE)
 sheet = book.worksheet 'Items'
 
 sheet.each do |row|
