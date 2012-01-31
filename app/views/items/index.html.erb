@@ -4,7 +4,7 @@
     <form>
       <div class="clearfix">
         <div class="input">
-          <input type="text" class="span8" />
+          <input id="search" type="text" class="span8" />
           <a class="btn primary" href="#">Search</a>
           <br />
           <span class="example-search">Examples: open set, induction,
@@ -26,7 +26,7 @@
         <span class="label"><%= item.label %></span>
         <span class="item-name"><%= item.name %></span>
         <p><%= item.content %></p>
-        <a href="#" data-videoid="<%= item.video_id %>" data-start="<%= item.video_time %>" class="play-btn">Watch!</a>
+        <a href="#" data-videoid="<%= item.video_id %>" data-start="<%= item.video_time %>" data-end="<%= item.video_end %>" class="play-btn">Watch!</a>
       </li>
     <% end %>
     </ul>
