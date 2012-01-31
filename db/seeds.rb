@@ -7,8 +7,13 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 Item.all.each { |i| i.destroy }
-Item.create([{ name: 'Set', label: 'Definition', video_id: 'sqEyWLGvvdw', video_time: '857',
-               content: 'A set is a collection of objects.' },
-             { name: 'Subset', label: 'Definition', video_id: 'sqEyWLGvvdw', video_time: '1260',
-               content: 'If \( x \in A \) then \( x \in B \) (or \( x \in A \Leftarrow x \in B \)).' }])
+
+book = Spreadsheet.open('/Users/ramuller/src/rudini/data/data.xls')
+sheet = book.worksheet 'Items'
+
+sheet.each do |row|
+  if row[6] == "Definition" || row[6] == "Theorem"
+    Item.create({ name: row[5], label: row[6], video_id: row[2], video_time: row[3], video_end: row[4], content: row[8] })
+  end
+end
 
