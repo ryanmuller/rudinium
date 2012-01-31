@@ -18,7 +18,20 @@ loadVideo = (videoid, start, end) ->
 
 
 $ ->
+  $('#search').change(() ->
+
+    val = $('#search').val()
+    console.log(val)
+    if val != ""
+      $('li').hide()
+      $('li:contains("'+val+'")').show()
+    else
+      $('li').show()
+    
+  )
+
   $('.play-btn').click(() ->
     el = $(this)
     loadVideo(el.data('videoid'), el.data('start'), el.data('end'))
   )
+
