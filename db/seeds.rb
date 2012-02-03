@@ -13,7 +13,7 @@ book = Spreadsheet.open(DATA_FILE)
 sheet = book.worksheet 'Items'
 
 sheet.each do |row|
-  if row[6] == "Definition" || row[6] == "Theorem"
+  if row[6] == "Definition" || row[6] == "Theorem" || row[6] == "Proof"
     Item.create({ name: row[5], label: row[6], video_id: row[2], video_time: row[3], video_end: row[4], content: row[8] })
   end
 end

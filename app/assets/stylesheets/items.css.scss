@@ -1,3 +1,13 @@
 // Place all the styles related to the items controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+body { font-size: 14px; }
+.item-type { font-size: 1.2em; color: #9cf; }
+.item-name { font-weight: bold; }
+#list { list-style: none }
+#list li { margin-bottom: 1em; color: black; }
+.example-search { font-style: italic; color: #ccc; }
+#list li p { font-size: 1.5em; line-height: 1.6em; }
+#list li p a { font-size: .8em;}
+.term { font-size: 1em; }
+.control { font-size: .8em; }
