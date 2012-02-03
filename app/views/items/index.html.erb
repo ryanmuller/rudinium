@@ -23,9 +23,11 @@
     <ul id="list">
     <% @items.each do |item| %>
       <li>
-        <span class="label"><%= item.label %></span>
-        <span class="item-name"><%= item.name %></span>
-        <p><%= item.content %></p>
+        <p>
+          <span class="label"><%= item.label %></span>
+          <span class="item-name"><%= item.name %></span>
+          <%= item.content %>
+        </p>
         <a href="#" data-videoid="<%= item.video_id %>" data-start="<%= item.video_time %>" data-end="<%= item.video_end %>" class="play-btn">Watch!</a>
       </li>
     <% end %>
