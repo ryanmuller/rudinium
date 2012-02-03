@@ -5,3 +5,4 @@ tmp/
 .sass-cache/
 *.swp
 *.DS_Store
+data/*
