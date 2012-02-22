@@ -11,11 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120208001416) do
+ActiveRecord::Schema.define(:version => 20120222192214) do
 
   create_table "items", :force => true do |t|
     t.string   "name"
-    t.string   "content"
+    t.text     "content",    :limit => 255
     t.string   "label"
     t.string   "video_id"
     t.integer  "video_time"
