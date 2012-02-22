@@ -4,10 +4,12 @@
 body { font-size: 14px; }
 .item-type { font-size: 1.2em; color: #9cf; }
 .item-name { font-weight: bold; }
-#list { list-style: none }
+#list { list-style: none; overflow-y: auto; overflow-x: hidden; }
 #list li { margin-bottom: 1em; color: black; }
 .example-search { font-style: italic; color: #ccc; }
 #list li p { font-size: 1.5em; line-height: 1.6em; }
 #list li p a { font-size: .8em;}
 .term { font-size: 1em; }
 .control { font-size: .8em; }
+.rd-logo { font-size: 16px; padding: 8px 8px 2px 2px; background-color:
+  #ffe8cc; }

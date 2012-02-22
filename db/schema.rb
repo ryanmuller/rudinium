@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120131020426) do
+ActiveRecord::Schema.define(:version => 20120208001416) do
 
   create_table "items", :force => true do |t|
     t.string   "name"
@@ -23,5 +23,36 @@ ActiveRecord::Schema.define(:version => 20120131020426) do
     t.datetime "updated_at"
     t.integer  "video_end"
   end
+
+  create_table "memories", :force => true do |t|
+    t.integer  "learner_id"
+    t.string   "learner_type"
+    t.integer  "component_id"
+    t.string   "component_type"
+    t.decimal  "ease",           :default => 2.5
+    t.decimal  "interval",       :default => 1.0
+    t.integer  "views",          :default => 0
+    t.integer  "streak",         :default => 0
+    t.datetime "last_viewed"
+    t.datetime "due"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "memories", ["component_id"], :name => "index_memories_on_component_id"
+  add_index "memories", ["learner_id", "component_id"], :name => "index_memories_on_learner_id_and_component_id", :unique => true
+  add_index "memories", ["learner_id"], :name => "index_memories_on_learner_id"
+
+  create_table "memory_ratings", :force => true do |t|
+    t.integer  "memory_id"
+    t.integer  "quality"
+    t.integer  "streak"
+    t.decimal  "ease"
+    t.integer  "interval"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "memory_ratings", ["memory_id"], :name => "index_memory_ratings_on_memory_id"
 
 end

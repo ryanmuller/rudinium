@@ -36,4 +36,6 @@ group :development, :test do
 end
 
 gem 'spreadsheet'
+gem 'spaceable', :git => 'git://github.com/cicatriz/spaceable.git'
+gem 'xml-simple'
 
