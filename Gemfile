@@ -5,7 +5,8 @@ gem 'rails', '3.1.1'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
+gem 'sqlite3', :group => [ :test, :development ]
+gem 'pg', :group => :production
 
 
 # Gems used only for assets and not required
@@ -35,7 +36,6 @@ group :development, :test do
   gem 'rspec-rails'
 end
 
-gem 'spreadsheet'
 gem 'spaceable', :git => 'git://github.com/cicatriz/spaceable.git'
 gem 'xml-simple'
 
