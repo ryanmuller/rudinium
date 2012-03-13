@@ -26,6 +26,12 @@
           <%= simple_format item.content %>
         </p>
         <a href="#" data-videoid="<%= item.video_id %>" data-start="<%= item.video_time %>" data-end="<%= item.video_end %>" class="play-btn">Watch!</a>
+        <% if user_signed_in? and not current_user.studying?(item) %>
+          <%= form_for Spaceable::Memory.new do |f| %>
+            <%= f.hidden_field :component_id, { :value => item.id } %>
+            <%= f.submit "Study" %>
+          <% end %>
+        <% end %> 
       </li>
     <% end %>
     </ul>
