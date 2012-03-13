@@ -20,13 +20,32 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <span class="logo">Learnstream</span> <span class="rd-logo">Rd</span> <small>The Real Analysis Video Dictionary</small>
+          <% if user_signed_in? %>
+            <%= link_to 'Account', edit_user_registration_path %>
+            <%= link_to 'Logout', destroy_user_session_path, :method => :delete %>
+          <% else %>
+            <%= link_to 'Login', new_user_session_path %>
+            <%= link_to 'Sign up', new_user_registration_path %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<div class="container">
-  <h1>Learnstream <span class="rd-logo">Rd</span> <small>The Real Analysis Video Dictionary</small></h1>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-<%= yield %>
-</div>
-
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+        <p><%= notice %></p>
+        <p><%= alert %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span12"> <%= yield %></div>
+    </div>
+  </div>
 </body>
 </html>
