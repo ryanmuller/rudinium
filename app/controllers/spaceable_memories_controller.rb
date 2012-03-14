@@ -9,4 +9,24 @@ class SpaceableMemoriesController < ApplicationController
       format.js
     end
   end
+
+  def index
+    @due_memories = current_user.memories.due_before(Time.now.utc)
+
+    if @due_memories.count > 0
+      redirect_to @due_memories.first
+    else
+      redirect_to root_path
+    end
+  end
+
+  def show
+    @memory = Spaceable::Memory.find(params[:id])
+  end
+
+  def update
+    @memory = Spaceable::Memory.find(params[:id])
+    @memory.view(params[:spaceable_memory][:quality].to_i)
+    redirect_to spaceable_memories_path
+  end
 end

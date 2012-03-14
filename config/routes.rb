@@ -5,7 +5,7 @@ Rudini::Application.routes.draw do
   resources :items, :only => :index do
     resources :quizzes, :only => :create
   end
-  resources :spaceable_memories, :only => [:create]
+  resources :spaceable_memories, :only => [:create, :index, :show, :update]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
