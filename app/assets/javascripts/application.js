@@ -6,4 +6,6 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require extensions
 //= require_tree .
+

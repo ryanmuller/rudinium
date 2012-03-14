@@ -1,36 +1,30 @@
+<div class="row main-page">
+  <div class="span4">
+    <div class="well sidebar-nav">
 
-<div class="row">
-  <div class="span16">
-    <form>
-      <div class="clearfix">
-        <div class="input">
-          <input id="search" type="text" class="span8" />
-          <a class="btn primary" href="#">Search</a>
-          <br />
-          <span class="example-search">Examples: open set, induction,
-            Cauchy</a>
-        </div>
+      <div id="search-header">
+        <input class="input focused" id="search-box" name="search" type="text" autocomplete="off" value="" placeholder="Type a definition or theorem">
       </div>
-    </form>
+      <ul class="nav nav-list">
+        <% @items[0..50].each do |item| %>
+          <li><a href="#" id="item-nav-<%= item.id %>"><%= item.name %></a></li>
+        <% end %>
+      </ul>
+    </div>
   </div>
-</div>
-
-<div class="row">
-  <div class="span8">
-    <ul id="list">
-    <% @items.each do |item| %>
-      <li>
-        <p>
-          <span class="label"><%= item.label %></span>
-          <span class="item-name"><%= item.name %></span>
-          <%= simple_format item.content %>
-        </p>
-        <a href="#" data-videoid="<%= item.video_id %>" data-start="<%= item.video_time %>" data-end="<%= item.video_end %>" class="play-btn">Watch!</a>
-      </li>
-    <% end %>
-    </ul>
-  </div>
-  <div class="span8">
-    <div id="video" style="width: 420px;height: 315px"></div>
+  <div class="span8 main-content">
+    <div class="item-container well">
+      <div class="item" id="default-item"><p>Search for an item on the left!</p></div>
+      <% @items[0..50].each do |item| %>
+        <div class="item" id="item-<%= item.id %>" style="display:none;">
+          <h2><span style="vertical-align: 45%; margin-right: 1em;" class="label" ><%= item.label %></span><%= item.name %></h2>
+          <p><%= simple_format item.content %></p>
+          <a class="play-btn btn btn-small btn-info" data-videoid="<%= item.video_id %>" data-start="<%= item.video_time %>" data-end="<%= item.video_end %>" href="#"><i class="icon-play icon-white"></i> Watch!</a>
+        </div>
+      <% end %>
+    </div>
+    <div class="video-container well">
+      <div id="video" style="width: 420px; height: 315px; margin: auto;"></div>
+    </div>
   </div>
 </div>

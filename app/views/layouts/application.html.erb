@@ -2,6 +2,12 @@
 <html>
 <head>
   <title>Learnstream Rudinium</title>
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "application" %>
+
+  <script defer src="http://balupton.github.com/history.js/scripts/bundled/html4+html5/jquery.history.js"></script>
+
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     tex2jax: {
@@ -11,26 +17,23 @@
     }
   });
   </script>
-  <script type="text/javascript"
-  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-  </script>
-  <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
-  <%= stylesheet_link_tag    "application" %>
-  <%= javascript_include_tag "application" %>
+
   <%= csrf_meta_tags %>
 </head>
 <body>
   <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container">
-        <span class="logo">Learnstream</span> <span class="rd-logo">Rd</span> <small>The Real Analysis Video Dictionary</small>
+        <span class="logo">Learnstream</span><%= image_tag "rudinium.png", :style => 'height: 35px; margin: 0 5px 0 15px;' %> <small>The Real Analysis Video Dictionary</small>
+        <span class="pull-right">
           <% if user_signed_in? %>
-            <%= link_to 'Account', edit_user_registration_path %>
+            <%= link_to 'Account', edit_user_registration_path %> 
             <%= link_to 'Logout', destroy_user_session_path, :method => :delete %>
           <% else %>
-            <%= link_to 'Login', new_user_session_path %>
+            <%= link_to 'Login', new_user_session_path %> 
             <%= link_to 'Sign up', new_user_registration_path %>
           <% end %>
+        </span>
         </div>
       </div>
     </div>
@@ -38,13 +41,13 @@
 
   <div class="container">
     <div class="row">
-      <div class="span12">
+      <div class="span16">
         <p><%= notice %></p>
         <p><%= alert %></p>
       </div>
     </div>
     <div class="row">
-      <div class="span12"> <%= yield %></div>
+      <div class="span16"> <%= yield %></div>
     </div>
   </div>
 </body>
