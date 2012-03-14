@@ -1,4 +1,4 @@
-<% if current_user.memories.find_by_component_id(item.id).due? %>
+<% if item.memories.find_by_learner_id(current_user).due? %>
   Due
 <% else %>
   Good

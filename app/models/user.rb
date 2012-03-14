@@ -9,9 +9,8 @@ class User < ActiveRecord::Base
 
   acts_as_learner
 
-  def learn(item)
-    memory = Spaceable::Memory.new(:component_id => item.id)
-    memories << memory
+  def learn!(item)
+    memories.create!(:component_id => item.id, :component_type => item.class.to_s)
   end
 
   def studying?(item)

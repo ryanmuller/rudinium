@@ -3,7 +3,7 @@ class SpaceableMemoriesController < ApplicationController
 
   def create
     @item = Item.find(params[:spaceable_memory][:component_id])
-    current_user.learn(@item)
+    current_user.learn!(@item)
     respond_to do |format|
       format.html { redirect_to root_path }
       format.js

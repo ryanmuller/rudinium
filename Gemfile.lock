@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/cicatriz/spaceable.git
-  revision: 481c8c208a067cc6050a016a2f2fcbe1705bbe48
+  revision: c897e493409a2e3929895441fae3b4f46b55932f
   specs:
     spaceable (0.0.1)
       rails (~> 3.1)
@@ -61,7 +61,7 @@ GEM
       railties (~> 3.0)
       thor (~> 0.14)
     json (1.6.5)
-    mail (2.3.2)
+    mail (2.3.3)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
