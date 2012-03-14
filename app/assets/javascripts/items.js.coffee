@@ -17,8 +17,12 @@ loadVideo = (videoid, start, end) ->
 
 showItem = (id) -> 
   $(".item-container > .item").hide()
-  $('#item-' + id).show()
-  History.pushState({item:id}, "Item" + id, "?item=" + id)
+  el = $('#item-' + id)
+  el.show()
+  title = "Item " + id + " - " + el.attr('data-title')
+  console.log(title)
+  document.title = title
+  History.pushState({item:id}, title, "?item=" + id)
 
 
 $ ->
