@@ -15,38 +15,7 @@
   <div class="span8 main-content">
     <div class="item-container well">
       <div class="item" id="item-none"><p>Search for an item on the left!</p></div>
-      <% @items.each do |item| %>
-        <div class="item" id="item-<%= item.id %>" style="display: none;" data-title="<%= item.name %>" data-id="<%= item.id %>" >
-          <h2><span style="vertical-align: 45%; margin-right: 1em;" class="label" ><%= item.label %></span><%= item.name %></h2>
-          <p><%= simple_format item.content %></p>
-          <a class="play-btn btn btn-small btn-info" data-videoid="<%= item.video_id %>" data-start="<%= item.video_time %>" data-end="<%= item.video_end %>" href="#"><i class="icon-play icon-white"></i> Watch!</a>
-          <% if user_signed_in? %>
-            <div id="item-study-info-<%= item.id %>" class="item-study-info">
-              <% if not current_user.studying?(item) %>
-                <%= form_for Spaceable::Memory.new, :remote => true do |f| %>
-                  <%= f.hidden_field :component_id, { :value => item.id } %>
-                  <a href="#" class="btn btn-small study-submit" data-itemid="<%= item.id %>"><i class="icon-plus"></i> Study</a>
-                    
-                <% end %>
-              <% else %>
-                <%= render :partial => 'items/study_info', :locals => { :item => item } %>
-              <% end %>
-            </div>
-            <% if current_user.status == "admin" %>
-              <hr>
-              <div class="quizzes">
-                <h4>Quizzes</h4>
-                <ul>
-                <% item.quizzes.each do |quiz| %>
-                  <li><%= render quiz %></li>
-                <% end %>
-                </ul>
-                <%= render :partial => 'quizzes/form', :locals => { :item => item } %>
-              </div>
-            <% end %>
-          <% end %> 
-          </div>
-      <% end %>
+      <%= render @items %>
     </div>
     <div class="video-container well">
       <div id="video" style="width: 420px; height: 315px; margin: auto;"></div>
