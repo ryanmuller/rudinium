@@ -1,16 +1,4 @@
-<%= form_for [item, item.quizzes.build] do |f| %>
-  <fieldset>
-    <legend>Add a quiz</legend>
-
-    <div class="control-group">
-      <div class="controls">
-        <%= f.text_area :content, :rows => 4, :class => 'text_area input-xlarge' %>
-      </div>
-    </div>
-
-    <div class="form-actions">
-      <%= f.submit nil, :class => 'btn btn-primary' %>
-      <%= link_to 'Cancel', '#', :class => 'btn' %>
-    </div>
-  </fieldset>
+<%= form_for [item, item.quizzes.build], :html => { :class => 'form-inline' } do |f| %>
+  <%= f.text_area :content, :value => item.content, :rows => 4, :class => 'quiz-text' %><br />
+  <%= f.submit nil, :class => 'btn btn-primary btn-small' %>
 <% end %>
