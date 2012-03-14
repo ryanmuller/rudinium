@@ -2,7 +2,9 @@ Rudini::Application.routes.draw do
   devise_for :users
 
   root :to => "items#index"
-  resources :items, :only => :index
+  resources :items, :only => :index do
+    resources :quizzes, :only => :create
+  end
   resources :spaceable_memories, :only => [:create]
 
   # The priority is based upon order of creation:

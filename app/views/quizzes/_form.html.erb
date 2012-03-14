@@ -1,0 +1,16 @@
+<%= form_for [item, item.quizzes.build] do |f| %>
+  <fieldset>
+    <legend><%= controller.action_name.capitalize %> Quiz</legend>
+
+    <div class="control-group">
+      <%= f.label :content, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_area :content, :rows => 4, :class => 'text_area input-xlarge' %>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+    </div>
+  </fieldset>
+<% end %>
