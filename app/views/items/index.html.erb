@@ -29,7 +29,7 @@
         <% if user_signed_in? and not current_user.studying?(item) %>
           <%= form_for Spaceable::Memory.new do |f| %>
             <%= f.hidden_field :component_id, { :value => item.id } %>
-            <%= f.submit "Study" %>
+            <%= f.submit "Study", { :class => 'btn' } %>
           <% end %>
         <% end %> 
       </li>
