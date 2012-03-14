@@ -7,7 +7,7 @@
       </div>
       <ul class="nav nav-list">
         <% @items.each do |item| %>
-          <li><a href="#" id="item-nav-<%= item.id %>"><%= item.name %></a></li>
+          <li id="nav-item-<%= item.id %>" ><a href="#" id="nav-link-<%= item.id %>"><%= item.name %></a></li>
         <% end %>
       </ul>
     </div>
@@ -16,7 +16,7 @@
     <div class="item-container well">
       <div class="item" id="item-none"><p>Search for an item on the left!</p></div>
       <% @items.each do |item| %>
-        <div class="item" id="item-<%= item.id %>" style="display: none;" data-title="<%= item.name %>">
+        <div class="item" id="item-<%= item.id %>" style="display: none;" data-title="<%= item.name %>" data-id="<%= item.id %>" >
           <h2><span style="vertical-align: 45%; margin-right: 1em;" class="label" ><%= item.label %></span><%= item.name %></h2>
           <p><%= simple_format item.content %></p>
           <a class="play-btn btn btn-small btn-info" data-videoid="<%= item.video_id %>" data-start="<%= item.video_time %>" data-end="<%= item.video_end %>" href="#"><i class="icon-play icon-white"></i> Watch!</a>

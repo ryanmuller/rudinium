@@ -24,6 +24,9 @@ showItem = (id) ->
   document.title = title
   History.pushState({item:id}, title, "?item=" + id)
 
+showNavItem = (id) ->
+  $('#nav-item-' + id).show()
+
 showFromURL = () ->
   current_item = $.getParameterByName('item')
   if current_item && current_item.match(/\d+/)
@@ -45,18 +48,6 @@ $ ->
     else
       showFromURL() 
 
-  $('#search').change(() ->
-
-    val = $('#search').val()
-    console.log(val)
-    if val != ""
-      $('li').hide()
-      $('li:icontains("'+val+'")').show()
-    else
-      $('li').show()
-    
-  )
-
   $('.play-btn').click(() ->
     el = $(this)
     loadVideo(el.data('videoid'), el.data('start'), el.data('end'))
@@ -64,12 +55,10 @@ $ ->
   )
 
   $('#search-box').keyup(() ->
-
     val = $('#search-box').val()
-    console.log(val)
     if val != ""
       $('.nav-list > li').hide()
-      $('.nav-list > li:icontains("' + val + '")').show()
+      showNavItem $(item).attr('data-id') for item in $('.item:icontains("' + val + '")')
     else
       $('.nav-list > li').show()
 
@@ -88,5 +77,6 @@ $ ->
   $('.study-submit').click(() ->
     itemid = $(this).data('itemid')
     $('#item-study-info-'+itemid+' form').submit()
+    return false
   )
 
