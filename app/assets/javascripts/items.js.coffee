@@ -25,7 +25,7 @@ showItem = (id) ->
   History.pushState({item:id}, title, "?item=" + id)
 
 showFromURL = () ->
-  current_item = $.getUrlVar('item')
+  current_item = $.getParameterByName('item')
   if current_item && current_item.match(/\d+/)
     showItem(current_item)
   else
@@ -35,6 +35,8 @@ showFromURL = () ->
 
 $ ->
   showFromURL()
+
+  # to make the browser 'back' functionality work...
   loaded = false
   window.onpopstate = (e) ->
     if (!loaded)
