@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   def index
-    @items = Item.includes(:memories).all
+    @items = Item.includes(:memories, :quizzes).all
   end
 
 end

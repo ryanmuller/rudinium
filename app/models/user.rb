@@ -16,4 +16,5 @@ class User < ActiveRecord::Base
   def studying?(item)
     self.memories.find_by_component_id(item.id)
   end
+
 end

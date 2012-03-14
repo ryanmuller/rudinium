@@ -1,5 +1,5 @@
 <div id="item-study-info-<%= item.id %>" class="item-study-info">
-  <% if not current_user.studying?(item) %>
+  <% if not current_user.memories.include?(item) %>
     <%= form_for Spaceable::Memory.new, :remote => true do |f| %>
       <%= f.hidden_field :component_id, { :value => item.id } %>
       <a href="#" class="btn btn-small study-submit" data-itemid="<%= item.id %>"><i class="icon-plus"></i> Study</a>
