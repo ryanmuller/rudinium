@@ -20,6 +20,12 @@
           <h2><span style="vertical-align: 45%; margin-right: 1em;" class="label" ><%= item.label %></span><%= item.name %></h2>
           <p><%= simple_format item.content %></p>
           <a class="play-btn btn btn-small btn-info" data-videoid="<%= item.video_id %>" data-start="<%= item.video_time %>" data-end="<%= item.video_end %>" href="#"><i class="icon-play icon-white"></i> Watch!</a>
+        <% if user_signed_in? and not current_user.studying?(item) %>
+          <%= form_for Spaceable::Memory.new, :remote => true do |f| %>
+            <%= f.hidden_field :component_id, { :value => item.id } %>
+            <%= f.submit "Study", { :class => 'btn btn-small' } %>
+          <% end %>
+        <% end %> 
         </div>
       <% end %>
     </div>

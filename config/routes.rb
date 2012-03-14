@@ -3,6 +3,7 @@ Rudini::Application.routes.draw do
 
   root :to => "items#index"
   resources :items, :only => :index
+  resources :spaceable_memories, :only => [:create]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
