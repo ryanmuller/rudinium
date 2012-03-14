@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120314180424) do
+ActiveRecord::Schema.define(:version => 20120314191431) do
 
   create_table "items", :force => true do |t|
     t.string   "name"
@@ -54,6 +54,15 @@ ActiveRecord::Schema.define(:version => 20120314180424) do
   end
 
   add_index "memory_ratings", ["memory_id"], :name => "index_memory_ratings_on_memory_id"
+
+  create_table "quizzes", :force => true do |t|
+    t.text     "content"
+    t.integer  "item_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "quizzes", ["item_id"], :name => "index_quizzes_on_item_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

@@ -39,5 +39,10 @@
     <div class="video-container well">
       <div id="video" style="width: 420px; height: 315px; margin: auto;"></div>
     </div>
+
+    <% if current_user.status == "admin" %>
+      <div class="quizzes">
+      </div>
+    <% end %>
   </div>
 </div>
