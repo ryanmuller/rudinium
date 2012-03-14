@@ -22,5 +22,12 @@ describe SpaceableMemoriesController do
       @user.memories.find_by_component_id(@item.id).should_not be_nil
     end
 
+    it "should create a memory using Ajax" do
+      lambda do
+        xhr :post, :create, :spaceable_memory => { :component_id => @item.id }
+        response.should be_success
+      end.should change(Spaceable::Memory, :count).by(1)
+    end
+
   end
 end

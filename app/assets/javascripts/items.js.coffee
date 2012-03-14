@@ -71,3 +71,8 @@ $ ->
 
   )
 
+  $('.study-submit').click(() ->
+    itemid = $(this).data('itemid')
+    $('#item-study-info-'+itemid+' form').submit()
+  )
+

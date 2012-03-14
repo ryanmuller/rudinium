@@ -1,0 +1,5 @@
+<% if current_user.memories.find_by_component_id(item.id).due? %>
+  Due
+<% else %>
+  Good
+<% end %>

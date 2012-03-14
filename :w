@@ -8,7 +8,7 @@ body {
     width: 1000px;
     .row { width: 1000px; }
    }
-  .navbar-fixed-top { height: 50px;
+  .navbar-fixed-top { height: 50px; }
   small, a { color: white; vertical-align: middle; }
   span.pull-right { 
     vertical-align: middle; 
@@ -54,9 +54,6 @@ body {
 .sidebar-nav .nav-list { overflow-y: scroll; height: 450px; }
 
 .well.sidebar-nav { padding: 15px 0px 0px 15px; }
-
-form.new_spaceable_memory { display: inline; }
-.item-study-info { display: inline; }
 
 
 
