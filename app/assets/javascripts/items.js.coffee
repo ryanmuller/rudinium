@@ -24,13 +24,25 @@ showItem = (id) ->
   document.title = title
   History.pushState({item:id}, title, "?item=" + id)
 
+showFromURL = () ->
+  current_item = $.getUrlVar('item')
+  if current_item && current_item.match(/\d+/)
+    showItem(current_item)
+  else
+    showItem('none')
+
+
 
 $ ->
-  current_item = $.getUrlVar('item')
-  if current_item
-    showItem(current_item)
-    
-  console.log(History.getState().data.item)
+  showFromURL()
+  loaded = false
+  window.onpopstate = (e) ->
+    if (!loaded)
+      loaded = true
+      return
+    else
+      showFromURL() 
+
   $('#search').change(() ->
 
     val = $('#search').val()
