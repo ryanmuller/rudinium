@@ -28,12 +28,12 @@ showNavItem = (id) ->
   $('#nav-item-' + id).show()
 
 showFromURL = () ->
+  return if window.location.pathname != '/'
   current_item = $.getParameterByName('item')
   if current_item && current_item.match(/\d+/)
     showItem(current_item)
   else
     showItem('none')
-
 
 
 $ ->
