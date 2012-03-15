@@ -21,4 +21,8 @@ class User < ActiveRecord::Base
     self.memories.due_before(Time.now.utc)
   end
 
+  def studying
+    Item.joins(:memories).where('memories.learner_id' => self.id)
+  end
+
 end
