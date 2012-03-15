@@ -75,7 +75,6 @@ showItem = (id) ->
   el = $('#item-' + id)
   el.show()
   title = "Item " + id + " - " + el.attr('data-title')
-  console.log(title)
   document.title = title
   History.pushState({item:id}, title, "?item=" + id)
 
@@ -129,19 +128,42 @@ $ ->
 
   $('#search-box').keyup(() ->
     val = $('#search-box').val()
-    if val != ""
+
+    # show all and return if search box is empty
+    if val == ""
+      $('.nav-list > li').show()
+      return false
+
+    # match patterns for special labels
+    pattern = ///^(rudin|chapter|lecture|section):(.*)///
+    [full, label, search] = val.match(pattern) || [null, null, null]
+
+    # show results either based on label or based on full-text search of the item
+    if search
+      $('.nav-list > li').hide()
+      switch (label)
+        when "rudin" then showNavItem $(item).attr('data-id') for item in $("div[data-rudineq='" + search + "']")
+        when "chapter" then showNavItem $(item).attr('data-id') for item in $("div[data-rudinch='" + search + "']")
+        when "lecture" 
+          r = new RegExp(search, 'i')
+          showNavItem $(item).attr('data-id') for item in $("div[data-lectureid='" + search + "']")
+          showNavItem $(item).attr('data-id') for item in $("div[data-lecturename]").filter(() -> 
+            return $(this).attr('data-lecturename').match(r) 
+          )
+        when "section"
+          r = new RegExp(search, 'i')
+          showNavItem $(item).attr('data-id') for item in $("div[data-rudinsec]").filter(() -> 
+            return $(this).attr('data-rudinsec').match(r) 
+          )
+    else
       $('.nav-list > li').hide()
       showNavItem $(item).attr('data-id') for item in $('.item:icontains("' + val + '")')
-    else
-      $('.nav-list > li').show()
-
   )
 
   $('.nav-list a').click(() ->
     el = $(this)
     ary = el.attr('id').split("-")
     id = ary[ary.length - 1]
-    console.log(id)
     showItem(id)
     return false
 

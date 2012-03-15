@@ -11,7 +11,7 @@ require 'open-uri'
 
 
 
-Item.all.each { |i| i.destroy }
+# Item.all.each { |i| i.destroy }
 
 # Gets data from server, initializes parsed hash
 url = "https://spreadsheets.google.com/feeds/cells/0AjQWBGQVwam3dEwxYk11RW9sZVhUZnRxN0FwcTdWcGc/1/public/values"
@@ -25,8 +25,11 @@ open(url) do |d|
 
   # (note... key [row, col] values are indexed from 1)
   data.each do |key, value|
-    if value[7] == "Definition" || value[7] == "Theorem" || value[7] == "Proof"
-      Item.create({ name: value[6], label: value[7], video_id: value[3], video_time: value[4], video_end: value[5], content: value[9] })
+    if value[7] == "Definition" || value[7] == "Theorem" || value[7] == "Proof" || value[7] == "Notation"
+      item = Item.find_or_create_by_id(value[1])
+      item_info = { :lecture_id => value[2], :lecture_name => value[10], :rudin_pg => value[12], :rudin_eq => value[13], :rudin_ch => value[14], :rudin_section => value[18] }
+      item.update_attributes({ name: value[6], label: value[7], video_id: value[3], video_time: value[4], video_end: value[5], content: value[9], item_info: item_info })
+      item.save!
     end
   end
 end
