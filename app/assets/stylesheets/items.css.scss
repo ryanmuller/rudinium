@@ -15,9 +15,14 @@ body {
     margin-top: .5em; 
     color: white;
     }
-    span.pull-right a:nth-of-type(odd) { border-right: solid white 2px; padding-right: 5px; }
   } // ....
 }
+
+.navbar > .navbar-inner {
+  background-color: whiteSmoke;
+  background-image: none;
+}
+
 .item-type { font-size: 1.2em; color: #9cf; }
 .item-name { font-weight: bold; }
 #list { list-style: none; overflow-y: auto; overflow-x: hidden; }
@@ -27,7 +32,9 @@ body {
 #list li p a { font-size: .8em;}
 .term { font-size: 1em; }
 .control { font-size: .8em; }
-.logo { font-size: 1.8em; color: white; vertical-align: middle; }
+.logo { font-size: 16px; font-weight: bold; color: #ff1b19; vertical-align: middle; }
+.navbar .brand { color: #999; }
+.navbar-inner .subtitle { color: #999; }
 .rd-logo { font-size: 16px; padding: 8px 8px 2px 2px; background-color:
   #ffe8cc; }
 

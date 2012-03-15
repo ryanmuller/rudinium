@@ -24,16 +24,17 @@
   <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container">
-        <span class="logo">Learnstream</span><%= image_tag "rudinium.png", :style => 'height: 35px; margin: 0 5px 0 15px;' %> <small>The Real Analysis Video Dictionary</small>
-        <span class="pull-right">
-          <% if user_signed_in? %>
-            <%= link_to 'Account', edit_user_registration_path %> 
-            <%= link_to 'Logout', destroy_user_session_path, :method => :delete %>
-          <% else %>
-            <%= link_to 'Login', new_user_session_path %> 
-            <%= link_to 'Sign up', new_user_registration_path %>
-          <% end %>
-        </span>
+        <a class="brand" href="/">Learnstream<%= image_tag "rudinium.png", :style => 'height: 20px; margin: 0 5px 0 5px;' %></a>
+        <div class="nav-collapse">
+          <ul class="nav">
+            <% if current_user %>
+              <li><%= link_to 'Account', edit_user_registration_path %></li>
+              <li><%= link_to 'Logout', destroy_user_session_path, :method => :delete %></li>
+            <% else %>
+              <li><%= link_to 'Login', new_user_session_path %></li>
+              <li><%= link_to 'Sign up', new_user_registration_path %></li>
+            <% end %>
+          </ul>
         </div>
       </div>
     </div>
