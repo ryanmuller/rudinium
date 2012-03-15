@@ -17,4 +17,8 @@ class User < ActiveRecord::Base
     self.memories.find_by_component_id(item.id)
   end
 
+  def due_memories
+    self.memories.due_before(Time.now.utc)
+  end
+
 end

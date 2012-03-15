@@ -16,7 +16,7 @@ class SpaceableMemoriesController < ApplicationController
     if @due_memories.count > 0
       redirect_to @due_memories.first
     else
-      redirect_to root_path
+      render :layout => false
     end
   end
 
@@ -28,6 +28,9 @@ class SpaceableMemoriesController < ApplicationController
   def update
     @memory = Spaceable::Memory.find(params[:id])
     @memory.view(params[:spaceable_memory][:quality].to_i)
-    redirect_to spaceable_memories_path
+    respond_to do |format|
+      format.html { redirect_to spaceable_memories_path }
+      format.js
+    end
   end
 end
