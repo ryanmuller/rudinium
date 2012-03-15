@@ -13,6 +13,9 @@ showNthQuiz = (n) ->
   # fix the text
   $('#nth-quiz').text(n+1)
 
+  # render 
+  MathJax.Hub.Queue(["Typeset",MathJax.Hub,"quiz-container"])
+
   # fix the buttons
   $('#quiz-show-btn').removeClass('disabled')
   if n == 0
