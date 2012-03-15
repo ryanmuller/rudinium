@@ -15,8 +15,7 @@ loadVideo = (videoid, start, end) ->
       clearInterval(document.end_vid)
   , 1000)
 
-showItem = (id) -> 
-  $(".item-container > .item").hide()
+showItem = (id) ->
   el = $('#item-' + id)
   el.show()
   title = "Item " + id + " - " + el.attr('data-title')
@@ -27,11 +26,27 @@ showItem = (id) ->
 showNavItem = (id) ->
   $('#nav-item-' + id).show()
 
+
+showQuiz = () ->
+  $('.quiz-container').show()
+  $.get('/spaceable_memories', (data) ->
+    $('.quiz-container').html(data)
+  )
+  title = "LSRu - Quiz"
+  document.title = title
+  History.pushState({ quiz: 1 }, title, "?quiz=1")
+
+
 showFromURL = () ->
   return if window.location.pathname != '/'
+  $('.item-container > .item').hide()
+  $('.quiz-container').hide()
   current_item = $.getParameterByName('item')
+  current_quiz = $.getParameterByName('quiz')
   if current_item && current_item.match(/\d+/)
     showItem(current_item)
+  else if current_quiz
+    showQuiz()
   else
     showItem('none')
 

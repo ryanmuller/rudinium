@@ -22,6 +22,7 @@ class SpaceableMemoriesController < ApplicationController
 
   def show
     @memory = Spaceable::Memory.find(params[:id])
+    render :layout => false
   end
 
   def update
