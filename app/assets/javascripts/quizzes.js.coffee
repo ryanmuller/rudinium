@@ -1,43 +1,36 @@
-$ ->
-  if $('#nth-quiz').length > 0
-    $('#rating-panel').hide()
 
-  $('#item-content').hide()
+showNthQuiz = (n) ->
+  # show the quiz, not the answer
   $('.quiz').hide()
-  $('.quiz').first().show()
+  $('.quiz:nth('+n+')').show()
+  $('#item-content').hide()
+
+  # fix the text
+  $('#nth-quiz').text(n+1)
+
+  # fix the buttons
+  $('#quiz-show-btn').removeClass('disabled')
+  if n == 0
+    $('#quiz-back-btn').addClass('disabled')
+  else
+    $('#quiz-back-btn').removeClass('disabled')
+
+  if n == parseInt($('#tot-quiz').text())-1
+    $('#quiz-next-btn').addClass('disabled')
+  else
+    $('#quiz-next-btn').removeClass('disabled')
+
+$ ->
+  showNthQuiz(0)
 
   $('#quiz-back-btn').click(() ->
     return if $(this).hasClass('disabled')
-
-    $('#quiz-show-btn').removeClass('disabled')
-    $('#quiz-next-btn').removeClass('disabled')
-    $('#item-content').hide()
-    $('.quiz').hide()
-
-    # get right quiz
-    quiznum = parseInt($('#nth-quiz').text()) - 1
-
-    $(this).addClass('disabled') if quiznum == 1
-    
-    $('.quiz:nth('+(quiznum-1)+')').show()
-    $('#nth-quiz').text(quiznum)
+    showNthQuiz(parseInt($('#nth-quiz').text())-2)
   )
 
   $('#quiz-next-btn').click(() ->
     return if $(this).hasClass('disabled')
-
-    $('#quiz-show-btn').removeClass('disabled')
-    $('#quiz-back-btn').removeClass('disabled')
-    $('#item-content').hide()
-    $('.quiz').hide()
-
-    # get right quiz
-    quiznum = parseInt($('#nth-quiz').text()) + 1
-
-    $(this).addClass('disabled') if quiznum == parseInt($('#tot-quiz').text())
-
-    $('.quiz:nth('+(quiznum-1)+')').show()
-    $('#nth-quiz').text(quiznum)
+    showNthQuiz(parseInt($('#nth-quiz').text()))
   )
 
   $('#quiz-show-btn').click(() ->
@@ -45,8 +38,5 @@ $ ->
 
     $('#item-content').show()
     $(this).addClass('disabled')
-
-    # reveal rating panel when showing the last quiz answer
-    $('#rating-panel').show() if parseInt($('#nth-quiz').text()) == parseInt($('#tot-quiz').text())
   )
     
