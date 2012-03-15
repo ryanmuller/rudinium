@@ -11,12 +11,12 @@
       <div class="quizzes">
         <h4>Quizzes</h4>
         <ul>
-        <% item.quizzes.each do |quiz| %>
-          <li><%= render quiz %></li>
-        <% end %>
+          <% item.quizzes.each do |quiz| %>
+            <li><%= render quiz %></li>
+          <% end %>
         </ul>
         <%= render :partial => 'quizzes/form', :locals => { :item => item } %>
       </div>
     <% end %>
   <% end %> 
-  </div>
+</div>
