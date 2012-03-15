@@ -1,6 +1,8 @@
 $ ->
+  if $('#nth-quiz').length > 0
+    $('#rating-panel').hide()
+
   $('#item-content').hide()
-  $('#rating-panel').hide()
   $('.quiz').hide()
   $('.quiz').first().show()
 
