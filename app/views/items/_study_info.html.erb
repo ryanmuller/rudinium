@@ -1,5 +1,5 @@
 <% if item.memories.find_by_learner_id(current_user).due? %>
-  Due
+  <button class="btn btn-small btn-danger disabled">Due</button>
 <% else %>
-  Good
+  <button class="btn btn-small disabled">Learned</button>
 <% end %>
