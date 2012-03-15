@@ -8,6 +8,7 @@ showNthQuiz = (n) ->
   $('.quiz').hide()
   $('.quiz:nth('+n+')').show()
   $('#item-content').hide()
+  $('.revealed').removeClass('revealed')
 
   # fix the text
   $('#nth-quiz').text(n+1)
@@ -43,6 +44,9 @@ initializeQuiz = () ->
 
     $('#item-content').show()
     $(this).addClass('disabled')
+
+    # remove blanks on the correct quiz
+    $('.blank').addClass('revealed')
   )
 
   $('.quiz-btn .btn').click(() ->
