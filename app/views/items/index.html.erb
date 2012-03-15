@@ -19,7 +19,7 @@
       <div class="item" id="item-none">
         <% if current_user.due_memories.count > 0 %>
           You have items to study!
-          <%= link_to "Go", "#", :class => 'study-initiate', :class => 'btn' %>
+          <%= link_to "Study now", "#", :class => 'study-initiate btn' %>
         <% else %>
           Search for an item on the left!
         <% end %>

@@ -77,7 +77,7 @@ showNavItem = (id) ->
 
 
 document.showQuiz = () ->
-  console.log('here2')
+  $('.item-container > .item').hide()
   $('.quiz-container').show()
   $.get('/spaceable_memories', (data) ->
     $('.quiz-container').html(data)
