@@ -45,6 +45,11 @@ initializeQuiz = () ->
     $(this).addClass('disabled')
   )
 
+  $('.quiz-btn .btn').click(() ->
+    $(this).parent().submit()
+    return false
+  )
+
     
 loadVideo = (videoid, start, end) ->
   $('#video').html('')
@@ -71,7 +76,8 @@ showNavItem = (id) ->
   $('#nav-item-' + id).show()
 
 
-showQuiz = () ->
+document.showQuiz = () ->
+  console.log('here2')
   $('.quiz-container').show()
   $.get('/spaceable_memories', (data) ->
     $('.quiz-container').html(data)
@@ -91,7 +97,7 @@ showFromURL = () ->
   if current_item && current_item.match(/\d+/)
     showItem(current_item)
   else if current_quiz
-    showQuiz()
+    document.showQuiz()
   else
     showItem('none')
 
@@ -134,8 +140,8 @@ $ ->
 
   )
 
-  $('#study-initiate').click(() ->
-    showQuiz()
+  $('.study-initiate').click(() ->
+    document.showQuiz()
     return false
   )
 
@@ -144,4 +150,5 @@ $ ->
     $('#item-study-info-'+itemid+' form').submit()
     return false
   )
+
 

@@ -20,19 +20,19 @@
   <p>Rate your understanding of this item after trying the quizzes</p>
   <%= form_for @memory, :remote => true, :html => { :class => 'quiz-btn' } do |f| %>
     <%= f.hidden_field :quality, :value => 0 %>
-    <%= f.submit "MISS!", :class => "btn btn-danger" %>
+    <%= link_to "MISS!", "#", :class => "btn btn-danger" %>
   <% end %>
   <%= form_for @memory, :remote => true, :html => { :class => 'quiz-btn' } do |f| %>
     <%= f.hidden_field :quality, :value => 3 %>
-    <%= f.submit "HARD", :class => "btn btn-warning" %>
+    <%= link_to "HARD", "#", :class => "btn btn-warning" %>
   <% end %>
   <%= form_for @memory, :remote => true, :html => { :class => 'quiz-btn' } do |f| %>
     <%= f.hidden_field :quality, :value => 4 %>
-    <%= f.submit "GOOD", :class => "btn btn-success" %>
+    <%= link_to "GOOD", "#", :class => "btn btn-success" %>
   <% end %>
   <%= form_for @memory, :remote => true, :html => { :class => 'quiz-btn' } do |f| %>
     <%= f.hidden_field :quality, :value => 5 %>
-    <%= f.submit "EASY!!", :class => "btn btn-primary" %>
+    <%= link_to "EASY!!", "#", :class => "btn btn-primary" %>
   <% end %>
 </div>
 
