@@ -1,19 +1,23 @@
 <div class="item">
   <h2><span style="vertical-align: 45%; margin-right: 1em;" class="label" ><%= @memory.component.label %></span><%= @memory.component.name %></h2>
   <% if @memory.component.quizzes.count > 0 %>
-    <p><span id="nth-quiz">1</span> of <%= pluralize @memory.component.quizzes.count, 'quiz' %></p>
+    <p><span id="nth-quiz">1</span> of 
+    <span id="tot-quiz"><%= pluralize @memory.component.quizzes.count, 'quiz' %></span>
+    <button id="quiz-back-btn" class="btn btn-mini disabled">Back</button>
+    <button id="quiz-next-btn" class="btn btn-mini">Next</button>
+    </p>
     <%= render @memory.component.quizzes %>
-    <p id="item-content" class="hidden">
+    <p id="item-content">
       <%= @memory.component.content %>
     </p>
-    <button id="quiz-show-btn" class="btn disabled">Back</button>
     <button id="quiz-show-btn" class="btn">Show</button>
-    <button id="quiz-next-btn" class="btn">Next</button>
   <% else %>
     <%= @memory.component.content %>
   <% end %>
 
-<div id="rating-panel" class="hidden">
+<div id="rating-panel">
+  <hr>
+  <p>Rate your understanding of this item</p>
   <%= form_for @memory, :html => { :class => 'quiz-btn' } do |f| %>
     <%= f.hidden_field :quality, :value => 0 %>
     <%= f.submit "MISS!", :class => "btn btn-danger" %>
