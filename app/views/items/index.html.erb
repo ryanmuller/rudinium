@@ -17,7 +17,7 @@
     </div>
     <div class="item-container">
       <div class="item" id="item-none">
-        <% if current_user.due_memories.count > 0 %>
+        <% if current_user && current_user.due_memories.count > 0 %>
           You have items to study!
           <%= link_to "Study now", "#", :class => 'study-initiate btn' %>
         <% else %>
