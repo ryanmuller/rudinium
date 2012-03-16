@@ -58,7 +58,7 @@ initializeQuiz = () ->
   )
 
     
-loadVideo = (videoid, start, end) ->
+document.loadVideo = (videoid, start, end) ->
   $('#video').html('')
   clearInterval(document.end_vid)
 
@@ -71,7 +71,7 @@ loadVideo = (videoid, start, end) ->
       clearInterval(document.end_vid)
   , 1000)
 
-showItem = (id) ->
+document.showItem = (id) ->
   $('.item-container > .item').hide()
   $('.quiz-container').hide()
   el = $('#item-' + id)
@@ -108,11 +108,11 @@ showFromURL = () ->
   current_item = $.getParameterByName('item')
   current_quiz = $.getParameterByName('quiz')
   if current_item && current_item.match(/\d+/)
-    showItem(current_item)
+    document.showItem(current_item)
   else if current_quiz
     document.showQuiz()
   else
-    showItem('none')
+    document.showItem('none')
 
 
 $ ->
@@ -129,7 +129,7 @@ $ ->
 
   $('.play-btn').click(() ->
     el = $(this)
-    loadVideo(el.data('videoid'), el.data('start'), el.data('end'))
+    document.loadVideo(el.data('videoid'), el.data('start'), el.data('end'))
     return false
   )
 
@@ -171,7 +171,7 @@ $ ->
     el = $(this)
     ary = el.attr('id').split("-")
     id = ary[ary.length - 1]
-    showItem(id)
+    document.showItem(id)
     return false
 
   )

@@ -2,5 +2,15 @@
   <a class="play-btn btn btn-small btn-info" data-videoid="<%= @lecture.video_id %>" data-start="0" data-end="9999" href="#"><i class="icon-play icon-white"></i> Watch!</a>
 </div>
 
-<div id="item"></div>
+<div class="item-container">
+  <%= render @lecture.items %>
+</div>
+<script type="text/javascript">
+  $(document).ready(function() {
+      document.loadVideo("<%= @lecture.video_id %>", 0, 9999);
+  <% @lecture.items.each do |item| %>
+    document.vid.code({ start: <%= item.video_time %>, end: <%= item.video_end %>, onStart: function() { document.showItem(<%= item.id %>) }})
+  <% end %>
+  });
+</script>
 

@@ -27,6 +27,7 @@
         <a class="brand" href="/">Learnstream<%= image_tag "rudinium.png", :style => 'height: 20px; margin: 0 5px 0 5px;' %></a>
         <div class="nav-collapse">
           <ul class="nav">
+            <li><%= link_to "Lectures", lectures_path %></li>
             <% if current_user %>
               <li><%= link_to 'Study', '#', :class => 'study-initiate' %>
               <li><%= link_to 'Account', edit_user_registration_path %></li>

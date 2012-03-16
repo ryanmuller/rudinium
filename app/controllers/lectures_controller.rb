@@ -6,6 +6,7 @@ class LecturesController < ApplicationController
   def show
     @lecture = Lecture.find(params[:id])
     @items = @lecture.items
+    @studying = current_user.nil? ? [] : current_user.studying
   end
 
 end
