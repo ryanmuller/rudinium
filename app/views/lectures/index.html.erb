@@ -1,0 +1,5 @@
+<ul>
+  <% @lectures.each do |lecture| %>
+    <li><%= link_to "Lecture #{lecture.number}: #{lecture.title}", lecture %></li>
+  <% end %>
+</ul>
