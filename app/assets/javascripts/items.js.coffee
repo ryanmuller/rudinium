@@ -80,6 +80,11 @@ showItem = (id) ->
   document.title = title
   History.pushState({item:id}, title, "?item=" + id)
 
+  # fix quiz submit form
+  $('#new_quiz').submit(() ->
+                    $(this).unbind('submit').submit()
+  )
+
 showNavItem = (id) ->
   $('#nav-item-' + id).show()
 
