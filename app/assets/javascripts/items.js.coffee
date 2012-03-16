@@ -72,6 +72,8 @@ loadVideo = (videoid, start, end) ->
   , 1000)
 
 showItem = (id) ->
+  $('.item-container > .item').hide()
+  $('.quiz-container').hide()
   el = $('#item-' + id)
   el.show()
   title = "Item " + id + " - " + el.attr('data-title')
