@@ -15,9 +15,11 @@ require 'open-uri'
 
 # Gets data from server, initializes parsed hash
 url = "https://spreadsheets.google.com/feeds/cells/0AjQWBGQVwam3dEwxYk11RW9sZVhUZnRxN0FwcTdWcGc/1/public/values"
+
 open(url) do |d| 
   xml = XmlSimple.xml_in(d.read)
   data = Hash.new{ |hash, key| hash[key] = {} }
+  lectures = Hash.new{ |hash, key| hash[key] = {} }
 
   # Parses the xml hash into a data hash.
   # for example, the contents of cell [3,5] ([row, col]) can be accessed as "data[3][5]"
@@ -30,9 +32,26 @@ open(url) do |d|
       item_info = { :lecture_id => value[2], :lecture_name => value[10], :rudin_pg => value[12], :rudin_eq => value[13], :rudin_ch => value[14], :rudin_section => value[18] }
       item.update_attributes({ name: value[6], label: value[7], video_id: value[3], video_time: value[4], video_end: value[5], content: value[9], item_info: item_info })
       item.save!
+
+      unless lectures.has_key?(value[2])
+        lectures[value[2]] = { :title => value[10], :video_id => value[3], :number => value[2] }
+      end
     end
   end
+
+  puts lectures
+  lectures.each do |key, value|
+    lecture = Lecture.find_or_create_by_id(key)
+    lecture.update_attributes(value)
+    lecture.save!
+  end
 end
+
+Item.all.each do |i|
+  Lecture.find(i.item_info[:lecture_id]).items << i ## I bet there's a much more efficient way to do this... but i'm feeling lazy
+end
+
+
 
 # sheet.each do |row|
 #   if row[6] == "Definition" || row[6] == "Theorem" || row[6] == "Proof"
