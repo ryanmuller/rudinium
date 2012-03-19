@@ -3,6 +3,7 @@ class Item < ActiveRecord::Base
   belongs_to :lecture 
 
   serialize :item_info, Hash
+  default_scope order('lecture_id ASC, video_time ASC')
   acts_as_component
 
   def item_info
