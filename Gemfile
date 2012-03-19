@@ -39,3 +39,5 @@ end
 gem 'spaceable', :git => 'git://github.com/cicatriz/spaceable.git'
 gem 'xml-simple'
 gem 'devise'
+gem 'omniauth-facebook'
+
