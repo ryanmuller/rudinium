@@ -1,6 +1,6 @@
 <div class="item" id="item-<%= item.id %>" style="display: none;" data-title="<%= item.name %>" data-id="<%= item.id %>" data-rudinpg="<%= item.item_info[:rudin_pg] %>" data-rudineq="<%= item.item_info[:rudin_eq] %>" data-rudinch="<%= item.item_info[:rudin_ch]%>" data-rudinsec="<%= item.item_info[:rudin_section] %>" data-lectureid="<%= item.item_info[:lecture_id] %>" data-lecturename="<%= item.item_info[:lecture_name] %>" >
 
-  <h2><span style="vertical-align: 13%; margin-right: 1em;" class="label" ><%= item.label %></span><%= item.name %></h2>
+  <h2><span class="label" ><%= item.label %></span><%= item.name %></h2>
   <p><%= simple_format item.content %></p>
 
   <div class="item-button-panel">
