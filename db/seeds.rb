@@ -39,7 +39,6 @@ open(url) do |d|
     end
   end
 
-  puts lectures
   lectures.each do |key, value|
     lecture = Lecture.find_or_create_by_id(key)
     lecture.update_attributes(value)
@@ -51,11 +50,33 @@ Item.all.each do |i|
   Lecture.find(i.item_info[:lecture_id]).items << i ## I bet there's a much more efficient way to do this... but i'm feeling lazy
 end
 
+# remove all item associations
+Item.all.each do |item|
+  item.quizzes = []
+  item.save!
+end
+
+quizzes_url = "https://spreadsheets.google.com/feeds/cells/0AjQWBGQVwam3dEwxYk11RW9sZVhUZnRxN0FwcTdWcGc/ocy/private/full"
+
+open(quizzes_url) do |d|
+  xml = XmlSimple.xml_in(d.read)
+  data = Hash.new{ |hash, key| hash[key] = {} }
+
+  xml['entry'].each {|x| data[x['cell'][0]['row'].to_i].merge!({ x['cell'][0]['col'].to_i =>  x['cell'][0]['content'] } ) }
+
+  # (note... key [row, col] values are indexed from 1)
+  data.each do |key, value|
+    # create or update quiz
+    quiz = Quiz.find_or_create_by_id(value[1])
+    quiz.update_attributes({ :content => value[8], :video_id => value[4], :video_time => value[5], :video_end => value[6] })
+    quiz.save!
 
 
-# sheet.each do |row|
-#   if row[6] == "Definition" || row[6] == "Theorem" || row[6] == "Proof"
-#     Item.create({ name: row[5], label: row[6], video_id: row[2], video_time: row[3], video_end: row[4], content: row[8] })
-#   end
-# end
+    # create new association
+    item = Item.find(value[2])
+    if item
+      item.quizzes << quiz
+    end
+  end
+end
 
