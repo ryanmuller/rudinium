@@ -5,6 +5,5 @@
  *= require_self
  *= require bootstrap/bootstrap
  *= require custom
- *= require items
  *= require quizzes
 */
