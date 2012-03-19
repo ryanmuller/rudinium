@@ -6,17 +6,5 @@
   <a class="play-btn btn btn-small btn-info" data-videoid="<%= item.video_id %>" data-start="<%= item.video_time %>" data-end="<%= item.video_end %>" href="#"><i class="icon-play icon-white"></i> Watch!</a>
   <% if user_signed_in? %>
     <%= render :partial => 'spaceable_memories/study_button', :locals => { :item => item } %>
-    <% if current_user.status == "admin" %>
-      <hr>
-      <div class="quizzes">
-        <h4>Quizzes</h4>
-        <ul>
-        <% item.quizzes.each do |quiz| %>
-          <li><%= render :partial => 'quizzes/mini_quiz', :locals => { :quiz => quiz } %></li>
-        <% end %>
-        </ul>
-        <%= render :partial => 'quizzes/form', :locals => { :item => item } %>
-      </div>
-    <% end %>
   <% end %> 
 </div>
