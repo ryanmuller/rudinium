@@ -59,6 +59,7 @@ initializeQuiz = () ->
 
     
 document.loadVideo = (videoid, start, end) ->
+  if $(".video-container").hasClass("hidden") then $(".video-container").removeClass("hidden")
   $('#video').html('')
   clearInterval(document.end_vid)
   console.log(videoid + ", " + start + ", " + end);

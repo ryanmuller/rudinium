@@ -1,28 +1,7 @@
-// Place all the styles related to the items controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-body { 
-  font-size: 14px;
-  .container { 
-    margin-bottom: 5em;
-    width: 1000px;
-    .row { width: 1000px; }
-   }
-  .navbar-fixed-top { height: 50px;
-  small, a { color: white; vertical-align: middle; }
-  span.pull-right { 
-    vertical-align: middle; 
-    margin-top: .5em; 
-    color: white;
-    }
-  } // ....
-}
+@import "bootstrap/mixins";
+@import "bootstrap/wells";
 
-.navbar > .navbar-inner {
-  background-color: whiteSmoke;
-  background-image: none;
-}
-
+/* Are these necessary anymore...?
 .item-type { font-size: 1.2em; color: #9cf; }
 .item-name { font-weight: bold; }
 #list { list-style: none; overflow-y: auto; overflow-x: hidden; }
@@ -33,34 +12,15 @@ body {
 .term { font-size: 1em; }
 .control { font-size: .8em; }
 .logo { font-size: 16px; font-weight: bold; color: #ff1b19; vertical-align: middle; }
-.navbar .brand { color: #999; }
-.navbar-inner .subtitle { color: #999; }
-.rd-logo { font-size: 16px; padding: 8px 8px 2px 2px; background-color:
-  #ffe8cc; }
+*/
 
-#search-box { width: 95%; }
-.item-container { 
-  min-height: 5em;
-  margin-bottom: 2em;
-  .item p { font-size: 1.5em; line-height: 1.6em; }
-  .item p a { font-size: .8em;}
+#main-column { margin-left: 20px; }
+
+.sidebar-nav {
+  padding: 15px 0px 0px 15px;
+  margin-right: 10px;
+  @extend .well;
+  .nav-list { overflow-y: scroll; height: 480px; overflow-x: hidden; }
+  #search-box { width: 95%; }
 }
-
-.main-content {
-  margin-left: 40px;
-}
-
-.video-container {
-  width: 75%;
-  margin: auto;
-}
-
-.sidebar-nav .nav-list { overflow-y: scroll; height: 450px; }
-
-.well.sidebar-nav { padding: 15px 0px 0px 15px; }
-
-form.new_spaceable_memory { display: inline; }
-.item-study-info { display: inline; }
-
-
 

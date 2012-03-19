@@ -1,6 +1,6 @@
 <div class="row main-page">
-  <div class="span4">
-    <div class="well sidebar-nav">
+  <div class="span4" id="navigation-sidebar">
+    <div class="sidebar-nav">
 
       <div id="search-header">
         <input class="input focused" id="search-box" name="search" type="text" autocomplete="off" value="" placeholder="Type a definition or theorem">
@@ -12,21 +12,21 @@
       </ul>
     </div>
   </div>
-  <div class="span8 main-content">
+  <div class="span8" id="main-column">
     <div id="quiz-container" class="quiz-container">
     </div>
     <div class="item-container">
       <div class="item" id="item-none">
         <% if current_user && current_user.due_memories.count > 0 %>
-          You have items to study!
-          <%= link_to "Study now", "#", :class => 'study-initiate btn' %>
+          <p>You have items to study!
+          <%= link_to "Study now", "#", :class => 'study-initiate btn' %></p>
         <% else %>
-          Search for an item on the left!
+          <p>Search for an item on the left!</p>
         <% end %>
       </div>
-      <%= render @items %>
+      <%= render @items[0..10] %>
     </div>
-    <div class="video-container well">
+    <div class="video-container well hidden">
       <div id="video" style="width: 420px; height: 315px; margin: auto;"></div>
     </div>
 
