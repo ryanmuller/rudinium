@@ -1,3 +1,9 @@
-<div class="quiz well">
-  <%= quizzify quiz.content %>
-</div>
+<span class="quiz">
+  <div class="well">
+    <%= quizzify quiz.content %>
+  </div>
+  <% if quiz.video_id %>
+    <a class="play-btn btn btn-small btn-info" data-videoid="<%= quiz.video_id %>" data-start="<%= quiz.video_time %>" data-end="<%= quiz.video_end %>" href="#"><i class="icon-play icon-white"></i> Watch!</a>
+  <% end %>
+</span>
+
