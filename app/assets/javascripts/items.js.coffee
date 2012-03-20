@@ -57,6 +57,8 @@ initializeQuiz = () ->
     return false
   )
 
+  registerPlayBtns()
+
     
 document.loadVideo = (videoid, start, end) ->
   if $(".video-container").hasClass("hidden") then $(".video-container").removeClass("hidden")
@@ -116,6 +118,12 @@ showFromURL = () ->
   else
     document.showItem('none')
 
+registerPlayBtns = () ->
+  $('.play-btn').click(() ->
+    el = $(this)
+    document.loadVideo(el.data('videoid'), el.data('start'), el.data('end'))
+    return false
+  )
 
 $ ->
   showFromURL()
@@ -127,13 +135,9 @@ $ ->
       loaded = true
       return
     else
-      showFromURL() 
+      showFromURL()
 
-  $('.play-btn').click(() ->
-    el = $(this)
-    document.loadVideo(el.data('videoid'), el.data('start'), el.data('end'))
-    return false
-  )
+  registerPlayBtns()
 
   $('#search-box').keyup(() ->
     val = $('#search-box').val()
