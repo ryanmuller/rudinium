@@ -1,0 +1,26 @@
+.blank {
+  display: inline-block;
+  background-color: #ffccee;
+  color: #ffccee;
+  border: 1px solid darken(#ffccee, 5%);
+  }
+
+.revealed {
+  background-color: transparent;
+  color: #000;
+  }
+
+   
+
+textarea.quiz-text {
+  width: 450px;
+  }
+
+body {
+  padding-top: 60px;
+  }
+
+.quiz-btn {
+  display: inline;
+  }
+  

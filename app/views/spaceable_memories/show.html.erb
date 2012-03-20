@@ -1,5 +1,5 @@
 <div class="item">
-  <h2><span style="vertical-align: 45%; margin-right: 1em;" class="label" ><%= @memory.component.label %></span><%= @memory.component.name %></h2>
+  <h2><span class="label" ><%= @memory.component.label %></span><%= @memory.component.name %></h2>
   <% if @memory.component.quizzes.count > 0 %>
     <p><span id="nth-quiz">1</span> of 
     <span id="tot-quiz"><%= pluralize @memory.component.quizzes.count, 'quiz' %></span>

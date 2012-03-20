@@ -1,57 +1,63 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Learnstream Rudinium</title>
-  <%= stylesheet_link_tag    :application %>
-  <%= stylesheet_link_tag    params[:controller] %>
-  <%= javascript_include_tag "application" %>
+  <head>
+    <title>Learnstream Rudinium</title>
+    <%= stylesheet_link_tag    :application %>
+    <%= stylesheet_link_tag    params[:controller] %>
+    <%= javascript_include_tag "application" %>
 
-  <script defer src="http://balupton.github.com/history.js/scripts/bundled/html4+html5/jquery.history.js"></script>
+    <script defer src="http://balupton.github.com/history.js/scripts/bundled/html4+html5/jquery.history.js"></script>
 
-  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-  <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
-      processEscapes: true
-    }
-  });
-  </script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+          displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+          processEscapes: true
+        }
+      });
+    </script>
 
-  <%= csrf_meta_tags %>
-</head>
-<body>
-  <div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-      <div class="container">
-        <a class="brand" href="/">Learnstream<%= image_tag "rudinium.png", :style => 'height: 20px; margin: 0 5px 0 5px;' %></a>
-        <div class="nav-collapse">
-          <ul class="nav">
-            <li><%= link_to "Lectures", lectures_path %></li>
-            <% if current_user %>
-              <li><%= link_to 'Study', '#', :class => 'study-initiate' %>
-              <li><%= link_to 'Account', edit_user_registration_path %></li>
-              <li><%= link_to 'Logout', destroy_user_session_path, :method => :delete %></li>
-            <% else %>
-              <li><%= link_to 'Login', new_user_session_path %></li>
-              <li><%= link_to 'Sign up', new_user_registration_path %></li>
-            <% end %>
-          </ul>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <div class="row">
+            <div class="span12">
+              <a class="brand" href="/">Learnstream<%= image_tag "rudinium.png", :style => 'height: 20px; margin: 0 5px 0 5px;' %></a>
+              <div class="nav-collapse">
+                <ul class="nav">
+                  <li><%= link_to "Lectures", lectures_path %></li>
+                  <% if current_user %>
+                    <li><%= link_to 'Study', '#', :class => 'study-initiate' %>
+                    <li><%= link_to 'Account', edit_user_registration_path %></li>
+                    <li><%= link_to 'Logout', destroy_user_session_path, :method => :delete %></li>
+                  <% else %>
+                    <li><%= link_to 'Login', new_user_session_path %></li>
+                    <li><%= link_to 'Sign up', new_user_registration_path %></li>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="container">
+    <div class="container">
     <div class="row">
-      <div class="span16">
+      <div class="span12" id="alert-content">
         <p><%= notice %></p>
         <p><%= alert %></p>
       </div>
     </div>
     <div class="row">
-      <div class="span16" id="main-content"> <%= yield %></div>
+      <div class="span12" id="main-content">
+        <%= yield %>
+      </div>
     </div>
   </div>
 </body>

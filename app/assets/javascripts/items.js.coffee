@@ -61,13 +61,15 @@ initializeQuiz = () ->
 
     
 document.loadVideo = (videoid, start, end) ->
+  if $(".video-container").hasClass("hidden") then $(".video-container").removeClass("hidden")
   $('#video').html('')
   clearInterval(document.end_vid)
+  console.log(videoid + ", " + start + ", " + end);
 
   document.vid = Popcorn.youtube('#video', 'http://www.youtube.com/watch?v='+videoid)
   document.vid.play(start)
   document.end_vid = setInterval(() ->
-    console.log(document.vid.roundTime() + " " + end)
+    # console.log(document.vid.roundTime() + " " + end)
     if document.vid.roundTime() > end
       document.vid.pause()
       clearInterval(document.end_vid)
