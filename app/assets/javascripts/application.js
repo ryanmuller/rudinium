@@ -7,4 +7,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require extensions
-//= require_tree .
+//= require items
+//= require popcorn
+//= require quizzes

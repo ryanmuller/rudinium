@@ -46,7 +46,7 @@ Rudini::Application.configure do
   config.assets.precompile += [ 'custom.css', 'items.css', 'lectures.css', 'quizzes.css']
   
   #config.assets.precompile += %w( *.css )
-  config.assets.precompile += %w( *.js )
+  #config.assets.precompile += %w( *.js )
   # config.assets.precompile += %w( search.js )
 
   # Disable delivery errors, bad email addresses will be ignored
