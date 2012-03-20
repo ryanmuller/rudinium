@@ -56,7 +56,7 @@ Item.all.each do |item|
   item.save!
 end
 
-quizzes_url = "https://spreadsheets.google.com/feeds/cells/0AjQWBGQVwam3dEwxYk11RW9sZVhUZnRxN0FwcTdWcGc/ocy/private/full"
+quizzes_url = "https://spreadsheets.google.com/feeds/cells/0AjQWBGQVwam3dEwxYk11RW9sZVhUZnRxN0FwcTdWcGc/2/public/values"
 
 open(quizzes_url) do |d|
   xml = XmlSimple.xml_in(d.read)
@@ -66,6 +66,7 @@ open(quizzes_url) do |d|
 
   # (note... key [row, col] values are indexed from 1)
   data.each do |key, value|
+    next if value[1] == "id"
     # create or update quiz
     quiz = Quiz.find_or_create_by_id(value[1])
     quiz.update_attributes({ :content => value[8], :video_id => value[4], :video_time => value[5], :video_end => value[6] })
@@ -73,8 +74,7 @@ open(quizzes_url) do |d|
 
 
     # create new association
-    item = Item.find(value[2])
-    if item
+    if item = Item.find_by_id(value[2])
       item.quizzes << quiz
     end
   end
