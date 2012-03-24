@@ -10,3 +10,4 @@
 //= require items
 //= require popcorn
 //= require quizzes
+//= require_tree .
