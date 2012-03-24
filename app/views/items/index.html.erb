@@ -1,17 +1,7 @@
 <div class="row main-page">
-  <div class="span4" id="navigation-sidebar">
-    <div class="sidebar-nav">
+  
+  <div class="span4" id="navigation-sidebar"></div>
 
-      <div id="search-header">
-        <input class="input focused" id="search-box" name="search" type="text" autocomplete="off" value="" placeholder="Type a definition or theorem">
-      </div>
-      <ul class="nav nav-list">
-        <% @items.each do |item| %>
-          <li id="nav-item-<%= item.id %>" ><a href="#" id="nav-link-<%= item.id %>"><%= item.name %></a></li>
-        <% end %>
-      </ul>
-    </div>
-  </div>
   <div class="span8" id="main-column">
     <div id="quiz-container" class="quiz-container">
     </div>
@@ -32,3 +22,10 @@
 
   </div>
 </div>
+
+<script type="text/javascript">
+  $(function() {
+      window.router = new Item.Routers.ItemsRouter({items: <%= @items.to_json.html_safe -%>});
+      Backbone.history.start();
+      });
+</script>

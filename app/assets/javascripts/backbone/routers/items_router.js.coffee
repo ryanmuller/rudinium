@@ -10,7 +10,7 @@ class Rudini.Routers.ItemsRouter extends Backbone.Router
 
   index: ->
     @view = new Rudini.Views.Items.IndexView(items: @items)
-    $("#items").html(@view.render().el)
+    $("#navigation-sidebar").html(@view.render().el)
 
   show: (id) ->
     item = @items.get(id)

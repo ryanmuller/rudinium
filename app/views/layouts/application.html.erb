@@ -6,8 +6,6 @@
     <%= stylesheet_link_tag    params[:controller] if ["lectures", "items"].include?(params[:controller]) %><!-- ugh, there's got to be a better way to do this... -->
     <%= javascript_include_tag "application" %>
 
-    <script defer src="http://balupton.github.com/history.js/scripts/bundled/html4+html5/jquery.history.js"></script>
-
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">
       MathJax.Hub.Config({
