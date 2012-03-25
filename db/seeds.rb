@@ -56,6 +56,8 @@ Item.all.each do |item|
   item.save!
 end
 
+Quiz.destroy_all
+
 quizzes_url = "https://spreadsheets.google.com/feeds/cells/0AjQWBGQVwam3dEwxYk11RW9sZVhUZnRxN0FwcTdWcGc/2/public/values"
 
 open(quizzes_url) do |d|
@@ -66,15 +68,12 @@ open(quizzes_url) do |d|
 
   # (note... key [row, col] values are indexed from 1)
   data.each do |key, value|
-    next if value[1] == "id"
+    next if value[1] == "references"
     # create or update quiz
-    quiz = Quiz.find_or_create_by_id(value[1])
-    quiz.update_attributes({ :content => value[8], :video_id => value[4], :video_time => value[5], :video_end => value[6] })
-    quiz.save!
-
+    quiz = Quiz.create!({ :content => value[7], :video_id => value[3], :video_time => value[4], :video_end => value[5] })
 
     # create new association
-    if item = Item.find_by_id(value[2])
+    if item = Item.find_by_id(value[1])
       item.quizzes << quiz
     end
   end

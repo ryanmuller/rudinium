@@ -9,4 +9,16 @@ class Item < ActiveRecord::Base
   def item_info
     read_attribute(:item_info) || write_attribute(:item_info, {})
   end
+
+  def to_s
+    if name 
+      name
+    else
+      if item_info[:rudin_eq]
+        "#{label} #{item_info[:rudin_eq]}"
+      else 
+        label
+      end
+    end
+  end
 end
