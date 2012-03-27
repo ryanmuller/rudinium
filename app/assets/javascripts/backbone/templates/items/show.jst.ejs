@@ -1,42 +1,10 @@
-<p>
-  <b>Name:</b>
-  <%= name %>
-</p>
+<div class="item" id="item-<%= id %>" data-title="<%= name %>" data-id="<%= id %>" data-rudinpg="<%= item_info['rudin_pg'] %>" data-rudineq="<%= item_info['rudin_eq'] %>" data-rudinch="<%= item_info['rudin_ch']%>" data-rudinsec="<%= item_info['rudin_section'] %>" data-lectureid="<%= item_info['lecture_id'] %>" data-lecturename="<%= item_info['lecture_name'] %>" >
 
-<p>
-  <b>Content:</b>
-  <%= content %>
-</p>
+  <h2><span class="label" ><%= label %></span><%= name %></h2>
+  <p><%= content %></p>
 
-<p>
-  <b>Label:</b>
-  <%= label %>
-</p>
+  <div class="item-button-panel">
+    <a class="play-btn btn btn-small btn-info" data-videoid="<%= video_id %>" data-start="<%= video_time %>" data-end="<%= video_end %>" href="#"><i class="icon-play icon-white"></i> Watch!</a>
+  </div>
+</div>
 
-<p>
-  <b>Video:</b>
-  <%= video_id %>
-</p>
-
-<p>
-  <b>Video time:</b>
-  <%= video_time %>
-</p>
-
-<p>
-  <b>Video end:</b>
-  <%= video_end %>
-</p>
-
-<p>
-  <b>Item info:</b>
-  <%= item_info %>
-</p>
-
-<p>
-  <b>Lecture:</b>
-  <%= lecture_id %>
-</p>
-
-
-<a href="#/index">Back</a>

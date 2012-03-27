@@ -15,5 +15,6 @@ class Rudini.Views.Items.ItemView extends Backbone.View
     return false
 
   render: ->
+    
     $(@el).html(@template(@model.toJSON() ))
     return this

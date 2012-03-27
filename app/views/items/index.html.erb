@@ -1,20 +1,13 @@
 <div class="row main-page">
   
-  <div class="span4" id="navigation-sidebar"></div>
+  <div class="span4" id="navigation-sidebar"></div><!-- hook for item index -->
 
   <div class="span8" id="main-column">
-    <div id="quiz-container" class="quiz-container">
-    </div>
-    <div class="item-container">
+    <div id="quiz-container" class="quiz-container"></div>
+    <div class="item-container" id="item-container"><!-- hook for item show -->
       <div class="item" id="item-none">
-        <% if current_user && current_user.due_memories.count > 0 %>
-          <p>You have items to study!
-          <%= link_to "Study now", "#", :class => 'study-initiate btn' %></p>
-        <% else %>
-          <p>Search for an item on the left!</p>
-        <% end %>
+        <p>Search for an item on the left!</p>
       </div>
-      <%= render @items %>
     </div>
     <div class="video-container well hidden">
       <div id="video" style="width: 420px; height: 315px; margin: auto;"></div>
@@ -25,7 +18,7 @@
 
 <script type="text/javascript">
   $(function() {
-      window.router = new Item.Routers.ItemsRouter({items: <%= @items.to_json.html_safe -%>});
+      window.router = new Rudini.Routers.ItemsRouter({items: <%= @items.to_json.html_safe -%>});
       Backbone.history.start();
       });
 </script>

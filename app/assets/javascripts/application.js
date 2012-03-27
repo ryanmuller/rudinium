@@ -9,7 +9,6 @@
 //= require extensions
 //= require items
 //= require popcorn
-//= require quizzes
 //= require underscore
 //= require backbone
 //= require backbone_rails_sync

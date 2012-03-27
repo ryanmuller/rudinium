@@ -82,7 +82,7 @@ document.showItem = (id) ->
   el.show()
   title = "Item " + id + " - " + el.attr('data-title')
   document.title = title
-  History.pushState({item:id}, title, "?item=" + id)
+  # History.pushState({item:id}, title, "?item=" + id)
 
   # fix quiz submit form
   $('#new_quiz').submit(() ->
@@ -102,7 +102,7 @@ document.showQuiz = () ->
   )
   title = "LSRu - Quiz"
   document.title = title
-  History.pushState({ quiz: 1 }, title, "?quiz=1")
+  # History.pushState({ quiz: 1 }, title, "?quiz=1")
 
 
 showFromURL = () ->
@@ -129,13 +129,13 @@ $ ->
   showFromURL()
 
   # to make the browser 'back' functionality work...
-  loaded = false
-  window.onpopstate = (e) ->
-    if (!loaded)
-      loaded = true
-      return
-    else
-      showFromURL()
+  # loaded = false
+  # window.onpopstate = (e) ->
+  #   if (!loaded)
+  #     loaded = true
+  #     return
+  #   else
+  #     showFromURL()
 
   registerPlayBtns()
 

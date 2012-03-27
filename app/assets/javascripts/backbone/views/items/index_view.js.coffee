@@ -11,7 +11,7 @@ class Rudini.Views.Items.IndexView extends Backbone.View
 
   addOne: (item) =>
     view = new Rudini.Views.Items.ItemView({model : item})
-    @$("tbody").append(view.render().el)
+    @$("#item-nav-list").append(view.render().el)
 
   render: =>
     $(@el).html(@template(items: @options.items.toJSON() ))
