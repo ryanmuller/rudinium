@@ -3,7 +3,6 @@
   <head>
     <title>Learnstream Rudinium</title>
     <%= stylesheet_link_tag    :application %>
-    <%= stylesheet_link_tag    params[:controller] if ["lectures", "items"].include?(params[:controller]) %><!-- ugh, there's got to be a better way to do this... -->
     <%= javascript_include_tag "application" %>
 
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -25,12 +24,12 @@
         <div class="container">
           <div class="row">
             <div class="span12">
-              <a class="brand" href="/">Learnstream<%= image_tag "rudinium.png", :style => 'height: 20px; margin: 0 5px 0 5px;' %></a>
+              <a class="brand" href="/#">Learnstream<%= image_tag "rudinium.png", :style => 'height: 20px; margin: 0 5px 0 5px;' %></a>
               <div class="nav-collapse">
                 <ul class="nav">
-                  <li><%= link_to "Lectures", lectures_path %></li>
+                  <li><%= link_to "Lectures", "/#/lectures" %></li>
                   <% if current_user %>
-                    <li><%= link_to 'Study', '#', :class => 'study-initiate' %>
+                    <li><%= link_to 'Study', '/#/study', :class => 'study-initiate' %>
                     <li><%= link_to 'Account', edit_user_registration_path %></li>
                     <li><%= link_to 'Logout', destroy_user_session_path, :method => :delete %></li>
                   <% else %>

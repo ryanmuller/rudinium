@@ -11,7 +11,7 @@ class Rudini.Views.Lectures.IndexView extends Backbone.View
 
   addOne: (lecture) =>
     view = new Rudini.Views.Lectures.LectureView({model : lecture})
-    @$("tbody").append(view.render().el)
+    @$("#lectures-list").append(view.render().el)
 
   render: =>
     $(@el).html(@template(lectures: @options.lectures.toJSON() ))

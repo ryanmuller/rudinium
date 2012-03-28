@@ -1,8 +1,4 @@
 @import "bootstrap/mixins";
 @import "bootstrap/wells";
 
-.item-container{
-  @extend .well;
-}
 
-#lecture-title { margin-bottom: 30px; }

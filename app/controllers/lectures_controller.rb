@@ -1,6 +1,7 @@
 class LecturesController < ApplicationController
   def index
     @lectures = Lecture.all
+    @items = Item.all
   end
 
   def show

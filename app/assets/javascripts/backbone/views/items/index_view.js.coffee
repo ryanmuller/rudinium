@@ -3,6 +3,8 @@ Rudini.Views.Items ||= {}
 class Rudini.Views.Items.IndexView extends Backbone.View
   template: JST["backbone/templates/items/index"]
 
+  className: "row"
+
   events:
     "keyup #search-box" : "search"
 
@@ -25,14 +27,8 @@ class Rudini.Views.Items.IndexView extends Backbone.View
     # show matching items in sidebar
     $('.nav-list > li').hide()
     _.each(match, (e) ->
-      $('#nav-item-' + e.id).show()) 
+      $('#nav-item-' + e.id).show())
       
-  
-
-
-
-
-
 
   initialize: () ->
     @options.items.bind('reset', @addAll)

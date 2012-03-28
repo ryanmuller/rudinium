@@ -1,5 +1,12 @@
-<ul>
-  <% @lectures.each do |lecture| %>
-    <li><%= link_to "Lecture #{lecture.number}: #{lecture.title}", lecture %></li>
-  <% end %>
-</ul>
+<div class="main-page" id="lecture-page">
+
+  
+</div>
+
+<script type="text/javascript">
+  $(function() {
+      window.lectures = new Rudini.Routers.LecturesRouter({lectures: <%= @lectures.to_json.html_safe -%>});
+      window.items = new Rudini.Routers.ItemsRouter({items: <%= @items.to_json.html_safe -%>});
+      Backbone.history.start();
+      });
+</script>

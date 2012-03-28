@@ -74,6 +74,10 @@ document.loadVideo = (videoid, start, end) ->
       clearInterval(document.end_vid)
   , 1000)
 
+document.showLectureItem = (id) ->
+  window.items.showForLecture(id)
+
+# depricated...?
 document.showItem = (id) ->
   $('.item-container > .item').hide()
   $('.quiz-container').hide()

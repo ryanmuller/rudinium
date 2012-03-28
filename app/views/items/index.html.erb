@@ -1,24 +1,10 @@
-<div class="row main-page">
-  
-  <div class="span4" id="navigation-sidebar"></div><!-- hook for item index -->
+<div class="main-page" id="backbone-page"></div><!-- hook for backbone.js app -->
 
-  <div class="span8" id="main-column">
-    <div id="quiz-container" class="quiz-container"></div>
-    <div class="item-container" id="item-container"><!-- hook for item show -->
-      <div class="item" id="item-none">
-        <p>Search for an item on the left!</p>
-      </div>
-    </div>
-    <div class="video-container well hidden">
-      <div id="video" style="width: 420px; height: 315px; margin: auto;"></div>
-    </div>
-
-  </div>
-</div>
-
+<!-- initializes the backbone.js app -->
 <script type="text/javascript">
   $(function() {
-      window.router = new Rudini.Routers.ItemsRouter({items: <%= @items.to_json.html_safe -%>});
+      window.items = new Rudini.Routers.ItemsRouter({items: <%= @items.to_json.html_safe -%>});
+      window.lectures = new Rudini.Routers.LecturesRouter({lectures: <%= @lectures.to_json.html_safe -%>});
       Backbone.history.start();
       });
 </script>
