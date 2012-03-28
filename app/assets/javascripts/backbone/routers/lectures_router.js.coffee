@@ -10,11 +10,12 @@ class Rudini.Routers.LecturesRouter extends Backbone.Router
     "/lectures/.*"     	: "index"
 
 
-  showItem: (item) ->
+  showItem: (id) ->
+    item = window.items.items.get(id)
     @view = new Rudini.Views.Items.ShowView(model: item)
     $("#item-container").html(@view.render().el)
     MathJax.Hub.Queue(["Typeset",MathJax.Hub,"item-container"])
-
+ 
   index: ->
     @view = new Rudini.Views.Lectures.IndexView(lectures: @lectures)
     $("#backbone-page").html(@view.render().el)

@@ -75,7 +75,7 @@ document.loadVideo = (videoid, start, end) ->
   , 1000)
 
 document.showLectureItem = (id) ->
-  window.items.showForLecture(id)
+  window.lectures.showItem(id)
 
 # depricated...?
 document.showItem = (id) ->

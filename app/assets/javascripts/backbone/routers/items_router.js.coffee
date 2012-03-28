@@ -11,6 +11,16 @@ class Rudini.Routers.ItemsRouter extends Backbone.Router
     "/items"        	: "index"
     "/items/.*"        	: "index"
 
+
+  renderPage: () ->
+    @view = new Rudini.Views.Items.PageView(items: @items)
+    $("#backbone-page").html(@view.render().el)
+
+  renderSidebar: () ->
+    @view = new Rudini.Views.Items.SidebarView(items: @items)
+    $("#navigation-sidebar").html(@view.render().el)
+
+
   index: ->
     this.renderPage()
     this.renderSidebar()
@@ -18,6 +28,7 @@ class Rudini.Routers.ItemsRouter extends Backbone.Router
     none_item = '<div class="item" id="item-none">' +
       '<p>Search for an item on the left!</p>' + 
       '</div>'
+
     $("#item-container").html(none_item)
     
 
@@ -40,19 +51,4 @@ class Rudini.Routers.ItemsRouter extends Backbone.Router
     MathJax.Hub.Queue(["Typeset",MathJax.Hub,"item-container"])
 
 
-  showForLecture: (id) ->
-    console.log("showing for lecture...")
-    item = window.items.items.get(id)
-    @view = new Rudini.Views.Items.ShowView(model: item)
-    $("#item-container").html(@view.render().el)
-    MathJax.Hub.Queue(["Typeset",MathJax.Hub,"item-container"])
-    
-  # renders the items page structure
-  renderPage: () ->
-    @view = new Rudini.Views.Items.PageView(items: @items)
-    $("#backbone-page").html(@view.render().el)
 
-  # renders the items sidebar
-  renderSidebar: () ->
-    @view = new Rudini.Views.Items.SidebarView(items: @items)
-    $("#navigation-sidebar").html(@view.render().el)
