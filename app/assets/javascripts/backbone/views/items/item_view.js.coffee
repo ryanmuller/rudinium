@@ -3,18 +3,11 @@ Rudini.Views.Items ||= {}
 class Rudini.Views.Items.ItemView extends Backbone.View
   template: JST["backbone/templates/items/item"]
 
-  events:
-    "click .destroy" : "destroy"
 
-  tagName: "tr"
-
-  destroy: () ->
-    @model.destroy()
-    this.remove()
-
-    return false
+  tagName: "li"
 
   render: ->
     
     $(@el).html(@template(@model.toJSON() ))
+    $(@el).attr('id', 'nav-item-' + @model.attributes.id)
     return this

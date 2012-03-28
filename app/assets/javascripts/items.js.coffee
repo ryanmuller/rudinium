@@ -2,6 +2,40 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
+document.filterSearch = () ->
+  val = $('#search-box').val()
+  console.log(val)
+
+  # show all and return if search box is empty
+  if val == ""
+    $('.nav-list > li').show()
+    return false
+
+  # match patterns for special labels
+  pattern = ///^(rudin|chapter|lecture|section):(.*)///
+  [full, label, search] = val.match(pattern) || [null, null, null]
+
+  # show results either based on label or based on full-text search of the item
+  if search
+    $('.nav-list > li').hide()
+    switch (label)
+      when "rudin" then showNavItem $(item).attr('data-id') for item in $("div[data-rudineq='" + search + "']")
+      when "chapter" then showNavItem $(item).attr('data-id') for item in $("div[data-rudinch='" + search + "']")
+      when "lecture" 
+        r = new RegExp(search, 'i')
+        showNavItem $(item).attr('data-id') for item in $("div[data-lectureid='" + search + "']")
+        showNavItem $(item).attr('data-id') for item in $("div[data-lecturename]").filter(() -> 
+          return $(this).attr('data-lecturename').match(r) 
+        )
+      when "section"
+        r = new RegExp(search, 'i')
+        showNavItem $(item).attr('data-id') for item in $("div[data-rudinsec]").filter(() -> 
+          return $(this).attr('data-rudinsec').match(r) 
+        )
+  else
+    $('.nav-list > li').hide()
+    showNavItem $(item).attr('data-id') for item in $('.item:icontains("' + val + '")')
+
 
 showNthQuiz = (n) ->
   # show the quiz, not the answer
@@ -137,41 +171,8 @@ $ ->
   #   else
   #     showFromURL()
 
-  registerPlayBtns()
+  # registerPlayBtns()
 
-  $('#search-box').keyup(() ->
-    val = $('#search-box').val()
-
-    # show all and return if search box is empty
-    if val == ""
-      $('.nav-list > li').show()
-      return false
-
-    # match patterns for special labels
-    pattern = ///^(rudin|chapter|lecture|section):(.*)///
-    [full, label, search] = val.match(pattern) || [null, null, null]
-
-    # show results either based on label or based on full-text search of the item
-    if search
-      $('.nav-list > li').hide()
-      switch (label)
-        when "rudin" then showNavItem $(item).attr('data-id') for item in $("div[data-rudineq='" + search + "']")
-        when "chapter" then showNavItem $(item).attr('data-id') for item in $("div[data-rudinch='" + search + "']")
-        when "lecture" 
-          r = new RegExp(search, 'i')
-          showNavItem $(item).attr('data-id') for item in $("div[data-lectureid='" + search + "']")
-          showNavItem $(item).attr('data-id') for item in $("div[data-lecturename]").filter(() -> 
-            return $(this).attr('data-lecturename').match(r) 
-          )
-        when "section"
-          r = new RegExp(search, 'i')
-          showNavItem $(item).attr('data-id') for item in $("div[data-rudinsec]").filter(() -> 
-            return $(this).attr('data-rudinsec').match(r) 
-          )
-    else
-      $('.nav-list > li').hide()
-      showNavItem $(item).attr('data-id') for item in $('.item:icontains("' + val + '")')
-  )
 
   $('.nav-list a').click(() ->
     el = $(this)

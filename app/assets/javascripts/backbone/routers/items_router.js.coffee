@@ -2,6 +2,8 @@ class Rudini.Routers.ItemsRouter extends Backbone.Router
   initialize: (options) ->
     @items = new Rudini.Collections.ItemsCollection()
     @items.reset options.items
+    console.log(@items)
+    console.log(this)
     
     # renders sidebar on items collection...
     @view = new Rudini.Views.Items.IndexView(items: @items)
@@ -21,4 +23,5 @@ class Rudini.Routers.ItemsRouter extends Backbone.Router
     
     @view = new Rudini.Views.Items.ShowView(model: item)
     $("#item-container").html(@view.render().el)
+    MathJax.Hub.Queue(["Typeset",MathJax.Hub,"item-container"])
 
