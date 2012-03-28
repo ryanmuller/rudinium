@@ -43,7 +43,3 @@ class Rudini.Collections.ItemsCollection extends Backbone.Collection
         return _(this.filter((data) ->
           return pattern.test(data.get("content")) || pattern.test(data.get("name"))))
 
-
-    
-
-
