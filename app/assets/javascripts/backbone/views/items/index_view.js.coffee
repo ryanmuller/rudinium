@@ -7,17 +7,26 @@ class Rudini.Views.Items.IndexView extends Backbone.View
     "keyup #search-box" : "search"
 
 
-  showNavItem: (id) ->
-    $('#nav-item-' + id).show()
-
   search: () ->
     val = $("#search-box").val()
+    if val == ""
+      $('.nav-list > li').show()
 
     pattern = ///^(rudin|chapter|lecture|section):(.*)///
     [full, label, search] = val.match(pattern) || [null, null, null]
+
+    # if no label found, set search back to value of search-box
     search ||= val 
 
-    console.log(this.options.items.search(search, label))
+    # call search function on Items collection; 
+    # returns wrapper of matched items
+    match = this.options.items.search(search, label)._wrapped
+
+    # show matching items in sidebar
+    $('.nav-list > li').hide()
+    _.each(match, (e) ->
+      $('#nav-item-' + e.id).show()) 
+      
   
 
 

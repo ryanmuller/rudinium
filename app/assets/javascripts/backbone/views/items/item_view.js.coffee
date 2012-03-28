@@ -6,6 +6,7 @@ class Rudini.Views.Items.ItemView extends Backbone.View
 
   tagName: "li"
 
+
   render: ->
     
     $(@el).html(@template(@model.toJSON() ))

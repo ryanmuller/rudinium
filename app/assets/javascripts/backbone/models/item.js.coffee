@@ -16,6 +16,7 @@ class Rudini.Collections.ItemsCollection extends Backbone.Collection
   model: Rudini.Models.Item
   url: '/items'
 
+  # search ItemsCollection; returns wrapper of matched items
   search: (query, label = null) ->
 
     # if empty query, return all items
