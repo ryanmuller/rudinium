@@ -6,10 +6,9 @@ class Rudini.Routers.ItemsRouter extends Backbone.Router
     @items.reset options.items
     
     console.log('initializing memories')
-    RudiniApp.studying ||= new Rudini.Collections.Memories()
 
     $.getJSON("/spaceable_memories", (data) ->
-      RudiniApp.studying.reset data
+      # RudiniApp.studying.reset data
     )
     console.log(RudiniApp.studying)
  

@@ -8,8 +8,9 @@ class Rudini.Models.Memory extends Backbone.Model
     quizzes: null
     item_id: null
 
-class Rudini.Collections.Memories extends Backbone.Collection
+class Rudini.Collections.MemoriesCollection extends Backbone.Collection
   model: Rudini.Models.Memory
+
 
   # Pops first memory, returns object with memory, quiz array, and item_id
   popQuiz: () ->

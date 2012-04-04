@@ -3,6 +3,13 @@ Rudini::Application.routes.draw do
 
   root :to => "items#index"
   resources :items, :only => :index
-  resources :spaceable_memories, :only => [:create, :index, :show, :update]
+
+  resources :spaceable_memories, :only => [:create, :index, :show, :update] do
+    collection do
+      get 'due'
+      get 'memories'
+    end
+  end
+
   resources :lectures, :only => [:index, :show]
 end

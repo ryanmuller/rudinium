@@ -5,7 +5,6 @@ class SpaceableMemoriesController < ApplicationController
     @item = Item.find(params[:spaceable_memory][:component_id])
     current_user.learn!(@item)
     respond_to do |format|
-      format.html { redirect_to root_path }
       format.js
     end
   end
@@ -36,6 +35,20 @@ class SpaceableMemoriesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to spaceable_memories_path }
       format.js
+    end
+  end
+
+  def due
+    @memories = current_user.due_memories
+    respond_to do |format|
+      format.json
+    end
+  end
+
+  def memories
+    @memories = current_user.memories
+    respond_to do |format|
+      format.json
     end
   end
 end

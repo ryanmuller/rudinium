@@ -5,6 +5,7 @@ class Rudini.Views.Items.ShowView extends Backbone.View
 
   events:
     "click .play-btn" : "play"
+    "click .study-btn" : "study"
 
 
   play: ->
@@ -12,10 +13,17 @@ class Rudini.Views.Items.ShowView extends Backbone.View
     document.loadVideo(item.video_id, item.video_time, item.video_end)
     return false
 
+  study: ->
+    item_id = @model.id
+    data = {spaceable_memory: {component_id: item_id}}
+    $.post("/spaceable_memories", data)
+    return false
+    
+
   render: ->
     options = @model.toJSON()
-    options['memory'] = @model.memory()
+    options['study_info'] = { studying: @model.studying(), memory: @model.memory(), due: @model.due() }
     console.log('rendering')
     console.log(options)
-    $(@el).html(@template(@model.toJSON() ))
+    $(@el).html(@template(options))
     return this

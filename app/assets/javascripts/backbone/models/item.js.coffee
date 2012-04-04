@@ -16,13 +16,27 @@ class Rudini.Models.Item extends Backbone.Model
   # returns the memory object associated with this item.
   # if no associated memory, returnes undefined
   memory: () ->
-    return undefined if ! RudiniApp.studying
+    return undefined if ! (RudiniApp.study && RudiniApp.study.memories)
     item_id = @attributes.id
-    console.log(item_id)
-    RudiniApp.studying.find((model) ->
+    RudiniApp.study.memories.find((model) ->
       return model.get("item_id") == item_id )
 
+  studying: () ->
+    if this.memory() == undefined
+      return false
+    else
+      return true
 
+  due: () ->
+    item_id = @attributes.id
+    return false if ! this.studying()
+    console.log(item_id)
+    mem = RudiniApp.study.due.find((model) ->
+      return model.get("item_id") == item_id)
+    if mem == undefined
+      return false
+    else
+      return true
 
 class Rudini.Collections.ItemsCollection extends Backbone.Collection
   model: Rudini.Models.Item

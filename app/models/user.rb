@@ -18,12 +18,12 @@ class User < ActiveRecord::Base
     self.memories.find_by_component_id(item.id)
   end
 
-  def due_memories
-    self.memories.due_before(Time.now.utc)
-  end
-
   def studying
     Item.joins(:memories).where('memories.learner_id' => self.id)
+  end
+
+  def due_memories
+    self.memories.due_before(Time.now.utc)
   end
 
   def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
