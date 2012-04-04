@@ -15,3 +15,4 @@ class Rudini.Collections.Memories extends Backbone.Collection
   popQuiz: () ->
     memory = this.models.pop()
     return new Object({ memory: memory, quizzes: memory.attributes.quizzes, item: memory.attributes.item_id })
+

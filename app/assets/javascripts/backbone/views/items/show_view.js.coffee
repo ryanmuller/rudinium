@@ -13,5 +13,9 @@ class Rudini.Views.Items.ShowView extends Backbone.View
     return false
 
   render: ->
+    options = @model.toJSON()
+    options['memory'] = @model.memory()
+    console.log('rendering')
+    console.log(options)
     $(@el).html(@template(@model.toJSON() ))
     return this

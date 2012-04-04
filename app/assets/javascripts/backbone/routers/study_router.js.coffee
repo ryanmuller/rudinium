@@ -1,14 +1,20 @@
-class Rudini.Routers.QuizzesRouter extends Backbone.Router
+# window.study
+class Rudini.Routers.StudyRouter extends Backbone.Router
   initialize: (options) ->
+    # initialize study router; load quizzes collection
+    # the relevant memories will be pulled from server 
+    # in the index action.
     @quizzes = new Rudini.Collections.QuizzesCollection()
     @quizzes.reset options.quizzes
 
+
+
   routes:
-    "/study/:id"      	: "show"
-    "/study"      	: "index"
+    "/study/:id"      	: "showQuiz" 	# show specific quiz
+    "/study"      	: "index"	# start studying
 
 
-  show: (id) ->
+  showQuiz: (id) ->
     if id == null
       $("#item-container").hide()
       $("#quiz-container").show()
@@ -33,9 +39,9 @@ class Rudini.Routers.QuizzesRouter extends Backbone.Router
     window.items.renderPage()
     window.items.renderSidebar()
 
-    window.studying = new Rudini.Collections.Memories()
+    RudiniApp.studying = new Rudini.Collections.Memories()
     $.getJSON("/spaceable_memories", (data) ->
-      window.studying.reset data
+      RudiniApp.studying.reset data
       if data.length > 0
         window.studying.popQuiz()
         memoryObject = window.studying.popQuiz()

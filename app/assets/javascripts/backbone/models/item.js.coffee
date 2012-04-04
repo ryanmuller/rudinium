@@ -12,11 +12,24 @@ class Rudini.Models.Item extends Backbone.Model
     lecture_id: null
     id: null
 
+
+  # returns the memory object associated with this item.
+  # if no associated memory, returnes undefined
+  memory: () ->
+    return undefined if ! RudiniApp.studying
+    item_id = @attributes.id
+    console.log(item_id)
+    RudiniApp.studying.find((model) ->
+      return model.get("item_id") == item_id )
+
+
+
 class Rudini.Collections.ItemsCollection extends Backbone.Collection
   model: Rudini.Models.Item
   url: '/items'
 
-  # search ItemsCollection; returns wrapper of matched items
+  # search function for ItemsCollection
+  # returns wrapper of matched items
   search: (query, label = null) ->
 
     # if empty query, return all items

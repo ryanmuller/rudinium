@@ -1,7 +1,7 @@
-Rudini.Views.Items ||= {}
+Rudini.Views.Page ||= {}
 
-class Rudini.Views.Items.PageView extends Backbone.View
-  template: JST["backbone/templates/items/page"]
+class Rudini.Views.Page.PageView extends Backbone.View
+  template: JST["backbone/templates/page/page"]
 
   className: "row"
 

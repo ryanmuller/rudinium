@@ -27,7 +27,7 @@ class Rudini.Routers.LecturesRouter extends Backbone.Router
     $("#backbone-page").html(@view.render().el)
     document.loadVideo(lecture.attributes.video_id, 0, 9999)
     _.each(lecture.attributes.items, (id) ->
-      item = window.items.items.get(id).attributes
+      item = RudiniApp.items.items.get(id).attributes
       document.vid.code({ start: item.video_time, end: item.video_end, onStart: () ->
         document.showLectureItem(item.id)}))
 

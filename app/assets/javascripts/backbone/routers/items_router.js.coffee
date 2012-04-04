@@ -1,9 +1,18 @@
+# window.items
 class Rudini.Routers.ItemsRouter extends Backbone.Router
   initialize: (options) ->
+    console.log('initializing items')
     @items = new Rudini.Collections.ItemsCollection()
     @items.reset options.items
-    console.log('initializing items')
     
+    console.log('initializing memories')
+    RudiniApp.studying ||= new Rudini.Collections.Memories()
+
+    $.getJSON("/spaceable_memories", (data) ->
+      RudiniApp.studying.reset data
+    )
+    console.log(RudiniApp.studying)
+ 
 
   routes:
     ""	        	: "index"
@@ -13,11 +22,11 @@ class Rudini.Routers.ItemsRouter extends Backbone.Router
 
 
   renderPage: () ->
-    @view = new Rudini.Views.Items.PageView(items: @items)
+    @view = new Rudini.Views.Page.PageView(items: @items)
     $("#backbone-page").html(@view.render().el)
 
   renderSidebar: () ->
-    @view = new Rudini.Views.Items.SidebarView(items: @items)
+    @view = new Rudini.Views.Page.SidebarView(items: @items)
     $("#navigation-sidebar").html(@view.render().el)
 
 
@@ -34,6 +43,7 @@ class Rudini.Routers.ItemsRouter extends Backbone.Router
 
   show: (id) ->
     item = @items.get(id)
+    memory = item.memory()
 
     title = "Item " + item.id + " - " + item.attributes.name 
     document.title = title
@@ -45,7 +55,8 @@ class Rudini.Routers.ItemsRouter extends Backbone.Router
       this.renderPage()
       this.renderSidebar()
     
-    @view = new Rudini.Views.Items.ShowView(model: item)
+    
+    @view = new Rudini.Views.Items.ShowView({model: item, memory: memory})
     $("#quiz-container").hide()
     $("#item-container").show()
     $("#item-container").html(@view.render().el)
