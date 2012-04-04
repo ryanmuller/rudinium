@@ -13,11 +13,16 @@ class SpaceableMemoriesController < ApplicationController
   def index
     @due_memories = current_user.memories.due_before(Time.now.utc)
 
-    if @due_memories.count > 0
-      redirect_to @due_memories.first
-    else
-      render :layout => false
-    end
+    respond_to do |format|
+      format.html {
+        if @due_memories.count > 0
+          redirect_to @due_memories.first
+        else
+          render :layout => false
+        end
+      }
+      format.js { render :json => @due_memories.map { |m| {:id => m.id,  :item_id => m.component_id, :quizzes => m.component.quizzes.map{|q| q.id} } } }
+    end 
   end
 
   def show

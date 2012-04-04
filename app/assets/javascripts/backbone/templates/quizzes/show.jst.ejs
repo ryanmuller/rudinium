@@ -1,27 +1,9 @@
-<p>
-  <b>Content:</b>
-  <%= content %>
-</p>
-
-<p>
-  <b>Item:</b>
-  <%= item_id %>
-</p>
-
-<p>
-  <b>Video:</b>
-  <%= video_id %>
-</p>
-
-<p>
-  <b>Video time:</b>
-  <%= video_time %>
-</p>
-
-<p>
-  <b>Video end:</b>
-  <%= video_end %>
-</p>
-
-
-<a href="#/index">Back</a>
+<span class="quiz">
+  <div class="well">
+    <%= content %>
+  </div>
+  <% if (video_id != '') { %>
+    <a class="play-btn btn btn-small btn-info" data-videoid="<%= video_id %>" data-start="<%= video_time %>" data-end="<%= video_end %>" href="#"><i class="icon-play icon-white"></i> Watch!</a>
+  <% } %>
+</span>
+<div id="rating-panel"></div>

@@ -5,6 +5,7 @@
   $(function() {
       window.items = new Rudini.Routers.ItemsRouter({items: <%= @items.to_json.html_safe -%>});
       window.lectures = new Rudini.Routers.LecturesRouter({lectures: <%= @lectures.to_json.html_safe -%>});
+      window.quizzes = new Rudini.Routers.QuizzesRouter({quizzes: <%= @quizzes.to_json.html_safe -%>});
       Backbone.history.start();
       });
 </script>

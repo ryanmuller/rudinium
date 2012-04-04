@@ -11,3 +11,5 @@ class Rudini.Models.Quiz extends Backbone.Model
 class Rudini.Collections.QuizzesCollection extends Backbone.Collection
   model: Rudini.Models.Quiz
   url: '/quizzes'
+
+

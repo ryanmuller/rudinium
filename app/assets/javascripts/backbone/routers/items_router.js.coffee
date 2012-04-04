@@ -46,9 +46,8 @@ class Rudini.Routers.ItemsRouter extends Backbone.Router
       this.renderSidebar()
     
     @view = new Rudini.Views.Items.ShowView(model: item)
+    $("#quiz-container").hide()
+    $("#item-container").show()
     $("#item-container").html(@view.render().el)
 
     MathJax.Hub.Queue(["Typeset",MathJax.Hub,"item-container"])
-
-
-

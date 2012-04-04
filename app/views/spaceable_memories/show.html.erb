@@ -8,12 +8,11 @@
     </p>
     <%= render @memory.component.quizzes %>
     <button id="quiz-show-btn" class="btn">Show answer</button>
-    <p id="item-content">
-      <%= @memory.component.content %>
-    </p>
+    <p id="item-content"><%= @memory.component.content %></p>
   <% else %>
     <%= @memory.component.content %>
   <% end %>
+</div>
 
 <div id="rating-panel">
   <hr>
@@ -35,4 +34,3 @@
     <%= link_to "EASY!!", "#", :class => "btn btn-primary" %>
   <% end %>
 </div>
-
