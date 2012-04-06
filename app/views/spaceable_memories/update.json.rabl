@@ -1,5 +1,4 @@
-collection @memories, :object_root => false
-
+object @memory
 attribute :id
 attribute :component_id => :item_id
 node(:due) { |m| m.due? }

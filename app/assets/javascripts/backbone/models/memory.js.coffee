@@ -7,9 +7,17 @@ class Rudini.Models.Memory extends Backbone.Model
   defaults:
     quizzes: null
     item_id: null
+    due: null
+
+  # finds associated item with the memory...
+  item: ->
+    id = this.attributes.item_id
+    RudiniApp.items.items.find((model) ->
+      return model.get("id") == id) 
 
 class Rudini.Collections.MemoriesCollection extends Backbone.Collection
   model: Rudini.Models.Memory
+  url: '/spaceable_memories'
 
 
   # Pops first memory, returns object with memory, quiz array, and item_id

@@ -28,15 +28,8 @@ class Rudini.Models.Item extends Backbone.Model
       return true
 
   due: () ->
-    item_id = @attributes.id
     return false if ! this.studying()
-    console.log(item_id)
-    mem = RudiniApp.study.due.find((model) ->
-      return model.get("item_id") == item_id)
-    if mem == undefined
-      return false
-    else
-      return true
+    this.memory().attributes.due
 
 class Rudini.Collections.ItemsCollection extends Backbone.Collection
   model: Rudini.Models.Item

@@ -9,7 +9,7 @@
       // initializes routers
       window.RudiniApp.items = new Rudini.Routers.ItemsRouter({items: <%= @items.to_json.html_safe -%>});
       window.RudiniApp.lectures = new Rudini.Routers.LecturesRouter({lectures: <%= @lectures.to_json.html_safe -%>});
-      window.RudiniApp.study = new Rudini.Routers.StudyRouter({memories: <%= @memories.to_json.html_safe -%>, due: <%= @due.to_json.html_safe -%>, quizzes: <%= @quizzes.to_json.html_safe -%>});
+      window.RudiniApp.study = new Rudini.Routers.StudyRouter({memories: <%= @memories.to_json.html_safe -%>, quizzes: <%= @quizzes.to_json.html_safe -%>});
       Backbone.history.start();
       });
 $.ajaxSetup({
