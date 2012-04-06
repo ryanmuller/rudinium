@@ -5,10 +5,6 @@ class Rudini.Views.Page.PageView extends Backbone.View
 
   className: "row"
 
-
-  initialize: () ->
-    @options.items.bind('reset', @addAll)
-
   render: =>
     $(@el).html(@template())
 
