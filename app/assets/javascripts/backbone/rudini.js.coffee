@@ -9,3 +9,4 @@ window.Rudini =
   Collections: {}
   Routers: {}
   Views: {}
+

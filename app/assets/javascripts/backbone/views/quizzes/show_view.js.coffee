@@ -1,6 +1,5 @@
 Rudini.Views.Quizzes ||= {}
 
-
 class Rudini.Views.Quizzes.ShowView extends Backbone.View
   template: JST["backbone/templates/quizzes/show"]
 
@@ -8,16 +7,16 @@ class Rudini.Views.Quizzes.ShowView extends Backbone.View
     "click .play-btn" : "play"
 
   play: (e) ->
-    console.log('playing!')
     quiz = $(e.currentTarget).data() # gets the video_id/start/end from play button
-    console.log(quiz)
     document.loadVideo(quiz.videoid, quiz.start, quiz.end)
     return false
 
 
+  # renders the quiz. It is passed the 'memory' model from the StudyRouter
+  # First, pulls the associated quiz models from the "quizzes" array.
+  # Then, renders the template.
   render: ->
-    quizzes = @model.attributes.quizzes.map((id) ->
-      return RudiniApp.study.quizzes.get(id).toJSON())
+    quizzes = @model.quizzes('json')
     number = quizzes.length
     item = @model.item().toJSON()
     switch number
@@ -26,5 +25,6 @@ class Rudini.Views.Quizzes.ShowView extends Backbone.View
       else number_text = number + " quizzes"
 
     $(@el).html(@template({quizzes: quizzes, item: item, info: {number: number, number_text: number_text}, memory: @model.toJSON()}))
+
     return this
 

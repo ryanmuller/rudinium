@@ -15,7 +15,7 @@ class Rudini.Views.Items.ShowView extends Backbone.View
 
   study: ->
     item_id = @model.id
-    data = {spaceable_memory: {component_id: item_id}}
+    data = {_method: "post", spaceable_memory: {component_id: item_id}}
     $.post("/spaceable_memories", data)
     return false
     
@@ -23,7 +23,5 @@ class Rudini.Views.Items.ShowView extends Backbone.View
   render: ->
     options = @model.toJSON()
     options['study_info'] = { studying: @model.studying(), memory: @model.memory(), due: @model.due() }
-    console.log('rendering')
-    console.log(options)
     $(@el).html(@template(options))
     return this

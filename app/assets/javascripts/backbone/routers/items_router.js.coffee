@@ -1,17 +1,12 @@
-# window.items
 class Rudini.Routers.ItemsRouter extends Backbone.Router
+  
+  # Initializes Items router, with a collection of all items.
+  # Actual object assigned to RudiniApp.items
+  # (and so the "items" collection is available at
+  #   "RudiniApp.items.items")
   initialize: (options) ->
-    console.log('initializing items')
     @items = new Rudini.Collections.ItemsCollection()
     @items.reset options.items
-    
-    console.log('initializing memories')
-
-    $.getJSON("/spaceable_memories", (data) ->
-      # RudiniApp.studying.reset data
-    )
-    console.log(RudiniApp.studying)
- 
 
   routes:
     ""	        	: "index"
@@ -20,17 +15,11 @@ class Rudini.Routers.ItemsRouter extends Backbone.Router
     "/items/.*"        	: "index"
 
 
-  renderPage: () ->
-    @view = new Rudini.Views.Page.PageView(items: @items)
-    $("#backbone-page").html(@view.render().el)
-
   renderSidebar: () ->
     @view = new Rudini.Views.Page.SidebarView(items: @items)
-    $("#navigation-sidebar").html(@view.render().el)
-
+    $("#backbone-page").html(@view.render().el)
 
   index: ->
-    this.renderPage()
     this.renderSidebar()
    
     none_item = '<div class="item" id="item-none">' +
@@ -47,11 +36,10 @@ class Rudini.Routers.ItemsRouter extends Backbone.Router
     title = "Item " + item.id + " - " + item.attributes.name 
     document.title = title
 
-    # If sidebar is absent, must be navigating in from another page
-    # thus, render page structure + sidebar
+    # If sidebar is absent, must be navigating in from another layout
+    # thus, render page structure/sidebar
     # if not, just render item show 
     if $("#item-nav-list").length == 0
-      this.renderPage()
       this.renderSidebar()
     
     

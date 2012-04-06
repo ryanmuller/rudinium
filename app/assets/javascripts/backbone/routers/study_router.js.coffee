@@ -1,9 +1,10 @@
-# window.study
 class Rudini.Routers.StudyRouter extends Backbone.Router
+
+  # initialize study router; 
+  # load quizzes and memories as collections.
+  # Object assigned to RudiniApp.study, and so memories/quizzes collections
+  # can be accessed at RudiniApp.study.memories and RudiniApp.study.quizzes
   initialize: (options) ->
-    # initialize study router; 
-    # load quizzes and memories
-    # the memories/due_memories can get updated from server
     @quizzes = new Rudini.Collections.QuizzesCollection()
     @quizzes.reset options.quizzes
 
@@ -11,10 +12,11 @@ class Rudini.Routers.StudyRouter extends Backbone.Router
     @memories.reset options.memories
 
 
+  # do we want to have a route to show specific quiz...?
   routes:
-    # do we want to have a route to show specific quiz...?
     "/study"      	: "index"	# start studying
 
+  # displays the nth quiz in a batch.
   showNthQuiz: (n) ->
     $('.quiz').hide()
     $('.quiz:nth('+n+')').show()
@@ -24,10 +26,9 @@ class Rudini.Routers.StudyRouter extends Backbone.Router
     $('#nth-quiz').text(n+1)
   
     # render 
-    # ... still necessary?
     MathJax.Hub.Queue(["Typeset",MathJax.Hub,"quiz-container"])
   
-    # fix the buttons
+    # fix the buttons to page through quizzes on particular item memory
     $('#quiz-show-btn').removeClass('disabled')
     if n == 0
       $('#quiz-back-btn').addClass('disabled')
@@ -40,11 +41,13 @@ class Rudini.Routers.StudyRouter extends Backbone.Router
       $('#quiz-next-btn').removeClass('disabled')
 
      
+  # loads the next "due" memory from the memories collection...
   loadNextMemory: () ->
-    console.log('loading next memory')
     memory = @memories.find((model) ->
       return model.get("due") == true)
     
+    # if there are no "due" memories, load the null memory
+    # (aka, 'you're done studying!')
     if memory == undefined
       this.show(null)
     else
@@ -54,17 +57,17 @@ class Rudini.Routers.StudyRouter extends Backbone.Router
   # show memory + associated quizzes
   # id: memory_id
   show: (id) ->
-    console.log('showing memory... ' + id)
     $("#item-container").hide()
     $("#study-container").show()
+
+    # if no memory_id, display "done studying" message.
     if id == null
       $("#quiz-container").html("<p>You don't have anything to study, congrats!</p>")
       $("#rating-panel").html("")
       return false
     
+    # else, load up memory by id, and display quizzes + rating panel
     memory = RudiniApp.study.memories.get(id) 
-    console.log(memory)
-
     @quiz = new Rudini.Views.Quizzes.ShowView(model: memory)
     $("#quiz-container").html(@quiz.render().el)
     
@@ -72,7 +75,7 @@ class Rudini.Routers.StudyRouter extends Backbone.Router
     $("#rating-panel").html(@rating.render().el)
     this.showNthQuiz(0)
 
-    #fix the buttons...
+    # bind click events to page thorugh quizzes...
     controller = this
     $('#quiz-back-btn').click(() ->
       return if $(this).hasClass('disabled')
@@ -86,7 +89,7 @@ class Rudini.Routers.StudyRouter extends Backbone.Router
   
     $('#quiz-show-btn').click(() ->
       return if $(this).hasClass('disabled')
-  
+
       $('#item-content').show()
       $(this).addClass('disabled')
   
@@ -94,12 +97,11 @@ class Rudini.Routers.StudyRouter extends Backbone.Router
       $('.blank').addClass('revealed')
     )
   
+  # start studying.
+  # First, renders the sidebar/page and fetches latest memory data
+  # from the server. Then calls loadNextMemory to start studying!
   index: ->
-    #check to see if these are rendered...?
-    RudiniApp.items.renderPage()
     RudiniApp.items.renderSidebar()
     study = this
     @memories.fetch({success: (data) ->
-      console.log('fetching memories for study')
-      console.log(data)
       study.loadNextMemory()})

@@ -1,6 +1,3 @@
-# this class holds the memories due for the student.
-# contains an array of quizzes and the item_id
-
 class Rudini.Models.Memory extends Backbone.Model
   paramRoot: 'memory'
 
@@ -15,13 +12,20 @@ class Rudini.Models.Memory extends Backbone.Model
     RudiniApp.items.items.find((model) ->
       return model.get("id") == id) 
 
+  # returns associated quiz objects
+  # can optionally specify that you want the quizzes
+  # returned as their json objects. Otherwise, returns them
+  # as Quiz objects.
+  quizzes: (format = 'model') -> 
+    if format == 'json'
+      this.attributes.quizzes.map((id) ->
+        return RudiniApp.study.quizzes.get(id).toJSON())
+    else
+      this.attributes.quizzes.map((id) ->
+        return RudiniApp.study.quizzes.get(id))
+
+
 class Rudini.Collections.MemoriesCollection extends Backbone.Collection
   model: Rudini.Models.Memory
   url: '/spaceable_memories'
-
-
-  # Pops first memory, returns object with memory, quiz array, and item_id
-  popQuiz: () ->
-    memory = this.models.pop()
-    return new Object({ memory: memory, quizzes: memory.attributes.quizzes, item: memory.attributes.item_id })
 
