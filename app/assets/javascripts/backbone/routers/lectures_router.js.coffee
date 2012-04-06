@@ -11,7 +11,7 @@ class Rudini.Routers.LecturesRouter extends Backbone.Router
 
 
   showItem: (id) ->
-    item = window.items.items.get(id)
+    item = RudiniApp.items.items.get(id)
     @view = new Rudini.Views.Items.ShowView(model: item)
     $("#item-container").html(@view.render().el)
     MathJax.Hub.Queue(["Typeset",MathJax.Hub,"item-container"])

@@ -75,7 +75,7 @@ document.loadVideo = (videoid, start, end) ->
   , 1000)
 
 document.showLectureItem = (id) ->
-  window.lectures.showItem(id)
+  RudiniApp.lectures.showItem(id)
 
 # depricated...?
 document.showItem = (id) ->
@@ -104,6 +104,12 @@ document.showQuiz = () ->
   document.title = title
   # History.pushState({ quiz: 1 }, title, "?quiz=1")
 
+# clear search box on 'escape'
+$(document).keyup((e) ->
+  if e.keyCode == 27
+    $("#search-box").val("")
+    $('.nav-list > li').show()
+  )
 
 showFromURL = () ->
   return if window.location.pathname != '/'
