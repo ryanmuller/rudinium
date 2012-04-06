@@ -30,7 +30,7 @@
                   <li><%= link_to "Lectures", "/#/lectures" %></li>
                   <% if current_user %>
                     <li><%= link_to 'Study', '/#/study' %>
-                    <li><%= link_to 'Account', edit_user_registration_path %></li>
+                    <li id="user-account" data-auth="logged_in"><%= link_to 'Account', edit_user_registration_path %></li>
                     <li><%= link_to 'Logout', destroy_user_session_path, :method => :delete %></li>
                   <% else %>
                     <li><%= link_to 'Login', new_user_session_path %></li>
