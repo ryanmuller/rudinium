@@ -111,19 +111,6 @@ $(document).keyup((e) ->
     $('.nav-list > li').show()
   )
 
-showFromURL = () ->
-  return if window.location.pathname != '/'
-  $('.item-container > .item').hide()
-  $('.quiz-container').hide()
-  current_item = $.getParameterByName('item')
-  current_quiz = $.getParameterByName('quiz')
-  if current_item && current_item.match(/\d+/)
-    document.showItem(current_item)
-  else if current_quiz
-    document.showQuiz()
-  else
-    document.showItem('none')
-
 registerPlayBtns = () ->
   $('.play-btn').click(() ->
     el = $(this)
@@ -132,19 +119,6 @@ registerPlayBtns = () ->
   )
 
 $ ->
-  showFromURL()
-
-  # to make the browser 'back' functionality work...
-  # loaded = false
-  # window.onpopstate = (e) ->
-  #   if (!loaded)
-  #     loaded = true
-  #     return
-  #   else
-  #     showFromURL()
-
-  # registerPlayBtns()
-
 
   $('.nav-list a').click(() ->
     el = $(this)
