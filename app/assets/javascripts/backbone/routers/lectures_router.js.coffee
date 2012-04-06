@@ -26,6 +26,7 @@ class Rudini.Routers.LecturesRouter extends Backbone.Router
   # loads lecture template, initializes associated items to display
   # at appropriate time.
   show: (id) ->
+    document.title = "LSRu - Lecture " + id
     lecture = @lectures.get(id)
     @view = new Rudini.Views.Lectures.ShowView(model: lecture)
     $("#backbone-page").html(@view.render().el)
@@ -34,13 +35,16 @@ class Rudini.Routers.LecturesRouter extends Backbone.Router
     _.each(lecture.attributes.items, (id) ->
       item = RudiniApp.items.items.get(id).attributes
       document.vid.code({ start: item.video_time, end: item.video_end, onStart: () ->
-        document.showLectureItem(item.id)}))
+        RudiniApp.lectures.showItem(item.id)}))
  
   # Lecture "show" at specific item.
   # same as show(id) above, but initializes video at the beginning of 
   # item (given by item_id)
+  # still need to verify if item/lecture combo is valid, and do something else
+  # if it's not.
   showWithItem: (id, item_id) ->
     lecture = @lectures.get(id)
+    document.title = "LSRu - Lecture " + id
     @view = new Rudini.Views.Lectures.ShowView(model: lecture)
     $("#backbone-page").html(@view.render().el)
 
@@ -51,10 +55,11 @@ class Rudini.Routers.LecturesRouter extends Backbone.Router
     _.each(lecture.attributes.items, (id) ->
       i = RudiniApp.items.items.get(id).attributes
       document.vid.code({ start: i.video_time, end: i.video_end, onStart: () ->
-        document.showLectureItem(i.id)}))
+        RudiniApp.lectures.showItem(i.id)}))
 
   # lecture index. Displays a list of lectures for user to select.
   index: ->
+    document.title = "LSRu - Lectures"
     @view = new Rudini.Views.Lectures.IndexView(lectures: @lectures)
     $("#backbone-page").html(@view.render().el)
 

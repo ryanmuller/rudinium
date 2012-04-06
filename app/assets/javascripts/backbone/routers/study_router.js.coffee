@@ -101,6 +101,7 @@ class Rudini.Routers.StudyRouter extends Backbone.Router
   # First, renders the sidebar/page and fetches latest memory data
   # from the server. Then calls loadNextMemory to start studying!
   index: ->
+    document.title = "LSRu - Study"
     RudiniApp.items.renderSidebar()
     study = this
     @memories.fetch({success: (data) ->
