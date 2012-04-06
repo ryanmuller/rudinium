@@ -11,19 +11,8 @@ class Rudini.Routers.StudyRouter extends Backbone.Router
     @memories.reset options.memories
 
 
-  update: () ->
-    # updates memories
-    memories = @memories
-    due = @due
-    $.getJSON("/spaceable_memories/memories", (data) ->
-      memories.reset data)
-    $.getJSON("/spaceable_memories/due", (data) ->
-      due.reset data)
-     
-
-
   routes:
-    "/study/:id"      	: "showQuiz" 	# show specific quiz
+    # do we want to have a route to show specific quiz...?
     "/study"      	: "index"	# start studying
 
   showNthQuiz: (n) ->
@@ -49,10 +38,10 @@ class Rudini.Routers.StudyRouter extends Backbone.Router
       $('#quiz-next-btn').addClass('disabled')
     else
       $('#quiz-next-btn').removeClass('disabled')
+
      
   loadNextMemory: () ->
     console.log('loading next memory')
- 
     memory = @memories.find((model) ->
       return model.get("due") == true)
     
@@ -70,6 +59,7 @@ class Rudini.Routers.StudyRouter extends Backbone.Router
     $("#study-container").show()
     if id == null
       $("#quiz-container").html("<p>You don't have anything to study, congrats!</p>")
+      $("#rating-panel").html("")
       return false
     
     memory = RudiniApp.study.memories.get(id) 
@@ -104,12 +94,12 @@ class Rudini.Routers.StudyRouter extends Backbone.Router
       $('.blank').addClass('revealed')
     )
   
-  
-
-
   index: ->
     #check to see if these are rendered...?
     RudiniApp.items.renderPage()
     RudiniApp.items.renderSidebar()
-  
-    this.loadNextMemory()
+    study = this
+    @memories.fetch({success: (data) ->
+      console.log('fetching memories for study')
+      console.log(data)
+      study.loadNextMemory()})

@@ -56,7 +56,7 @@ class Rudini.Routers.ItemsRouter extends Backbone.Router
     
     
     @view = new Rudini.Views.Items.ShowView({model: item, memory: memory})
-    $("#quiz-container").hide()
+    $("#study-container").hide()
     $("#item-container").show()
     $("#item-container").html(@view.render().el)
 

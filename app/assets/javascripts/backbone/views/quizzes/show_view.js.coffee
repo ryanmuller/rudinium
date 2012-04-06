@@ -7,9 +7,11 @@ class Rudini.Views.Quizzes.ShowView extends Backbone.View
   events:
     "click .play-btn" : "play"
 
-  play: ->
-    quiz = @model.attributes
-    document.loadVideo(quiz.video_id, quiz.video_time, quiz.video_end)
+  play: (e) ->
+    console.log('playing!')
+    quiz = $(e.currentTarget).data() # gets the video_id/start/end from play button
+    console.log(quiz)
+    document.loadVideo(quiz.videoid, quiz.start, quiz.end)
     return false
 
 
