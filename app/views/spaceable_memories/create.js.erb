@@ -1,1 +1,1 @@
-$('#item-study-info-<%= @item.id %>').html('<%= escape_javascript(render :partial => 'items/study_info', :locals => { :item => @item }) %>')
+$('.item-study-info').html('<%= escape_javascript(render :partial => 'items/study_info', :locals => { :item => @item }) %>');

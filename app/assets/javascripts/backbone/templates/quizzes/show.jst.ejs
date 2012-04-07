@@ -1,0 +1,29 @@
+<div class="item">
+  <h2><span class="label" ><%= item.label %></span><%= item.name %></h2>
+  <% if (info.number > 0) { %>
+    <p><span id="nth-quiz" data-total="<%= info.number %>">1</span> of 
+    <span id="tot-quiz"><%= info.number_text %></span>
+    <% if (info.number > 1) { %>
+      <button id="quiz-back-btn" class="btn btn-mini disabled">Back</button>
+      <button id="quiz-next-btn" class="btn btn-mini">Next</button>
+    <% } %>
+    </p>
+
+    <% for(var i = 0; i < info.number; i++){ %>
+      <span class="quiz">
+        <div class="well">
+          <%= quizzes[i].content %>
+        </div>
+        <% if (quizzes[i].video_id) { %>
+          <a class="play-btn btn btn-small btn-info" data-videoid="<%= quizzes[i].video_id %>" data-start="<%= quizzes[i].video_time %>" data-end="<%= quizzes[i].video_end %>" href="#"><i class="icon-play icon-white"></i> Watch!</a>
+        <% } %>
+      </span>
+    <% } %>
+
+    <button id="quiz-show-btn" class="btn">Show answer</button>
+
+  <% } else { %>
+    <%= item.content %>
+  <% } %>
+</div>
+

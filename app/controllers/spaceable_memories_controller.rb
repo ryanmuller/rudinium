@@ -5,32 +5,36 @@ class SpaceableMemoriesController < ApplicationController
     @item = Item.find(params[:spaceable_memory][:component_id])
     current_user.learn!(@item)
     respond_to do |format|
-      format.html { redirect_to root_path }
       format.js
     end
   end
 
   def index
-    @due_memories = current_user.memories.due_before(Time.now.utc)
+    @memories = current_user.memories
 
-    if @due_memories.count > 0
-      redirect_to @due_memories.first
-    else
-      render :layout => false
-    end
+    respond_to do |format|
+      format.json
+    end 
   end
 
   def show
     @memory = Spaceable::Memory.find(params[:id])
-    render :layout => false
+    if @memory.learner != current_user
+      render :text => "You are not the owner of this memory."
+      return false
+    end
+
+    respond_to do |format|
+      format.json
+    end
   end
 
   def update
     @memory = Spaceable::Memory.find(params[:id])
     @memory.view(params[:spaceable_memory][:quality].to_i)
+
     respond_to do |format|
-      format.html { redirect_to spaceable_memories_path }
-      format.js
+      format.json
     end
   end
 end
