@@ -66,9 +66,10 @@ open(quizzes_url) do |d|
 
   # (note... key [row, col] values are indexed from 1)
   data.each do |key, value|
-    next if value[1] == "id"
+    next if value[1] == "null"
     # create or update quiz
     quiz = Quiz.find_or_create_by_id(value[1])
+    #quiz.update_attributes({ :content => value[8], :video_id => value[4], :video_time => value[5], :video_end => value[6] })
     quiz.update_attributes({ :content => value[8], :video_id => value[4], :video_time => value[5], :video_end => value[6] })
     quiz.save!
 
