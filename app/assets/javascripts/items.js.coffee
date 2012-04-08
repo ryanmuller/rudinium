@@ -32,6 +32,7 @@ $(document).ready(() ->
     window_height = $(window).height()
     sidebar_height = window_height - 150
     $("#item-nav-list").height(sidebar_height))
+
   )
 
 

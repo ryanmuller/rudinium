@@ -10,9 +10,9 @@ class Rudini.Views.Memories.RatingView extends Backbone.View
     data = {_method: "put", spaceable_memory: { quality: $(e.target).attr('data-quality')}}
     memory = @model
     $.post("/spaceable_memories/" + @model.id , data, (r) ->
-      console.log('fetching...')
       memory.set(r)
       RudiniApp.study.loadNextMemory()
+      $("#study-nav-due").text(RudiniApp.study.memories.due())
       )
     return false
 

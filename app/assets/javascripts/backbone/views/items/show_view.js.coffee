@@ -15,8 +15,10 @@ class Rudini.Views.Items.ShowView extends Backbone.View
 
   study: ->
     item_id = @model.id
-    data = {_method: "post", spaceable_memory: {component_id: item_id}}
-    $.post("/spaceable_memories", data)
+    RudiniApp.study.memories.create({item_id: item_id}, {success: () ->
+      $("#study-nav-due").text(RudiniApp.study.memories.due()) })
+    
+    $(".item-study-info").html("<button class='btn btn-small btn-danger disabled'>Due</button>")
     return false
     
 

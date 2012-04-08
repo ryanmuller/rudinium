@@ -29,7 +29,7 @@
                 <ul class="nav">
                   <li><%= link_to "Lectures", "/#/lectures" %></li>
                   <% if current_user %>
-                    <li><%= link_to 'Study', '/#/study' %>
+                    <li><a href="/#/study">Study <sup><span class="label label-warning" id="study-nav-due" style="font-size: .8em;"><%= current_user.due_memories.count %></span></sup></a></li>
                     <li id="user-account" data-auth="logged_in"><%= link_to 'Account', edit_user_registration_path %></li>
                     <li><%= link_to 'Logout', destroy_user_session_path, :method => :delete %></li>
                   <% else %>
