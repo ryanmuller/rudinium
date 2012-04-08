@@ -85,17 +85,17 @@ class Rudini.Routers.ItemsRouter extends Backbone.Router
       <h2>Study with SRS!</h2>
       <p>
          If you've <a href="/users/sign_up">created an account</a> with Rudinium 
-         (free, simple, and easy -- you can
+         (free, simple, and easy &mdash; you can
          delete your account at any time if you are unsatisfied), you can choose to
          study the items you want to remember. We have added over 200 "quizzes" that
          let you test your understanding of a particular real analysis concept. Paired
          with a state-of-the-art spaced repetition learning algorithm, we'll help you
          manage the often difficult task of knowing when to study or review a particular
          concept. While studying, you'll be asked to self-rate your understanding on a
-         simple scale of "Miss!" &mdash; "Easy". Based on your response, Rudinium will
+         simple scale of ["Miss!", . . . , "Easy"]. Based on your response, Rudinium will
          have you review that concept again soon (if you didn't understand it very well)
-         or in several weeks/months if you already have a firm grasp. Using spaced
-         repetition to study these concepts will cut down on time wasted studying
+         or in several weeks/months if you already have a firm grasp on that concept. Using spaced
+         repetition to study will cut down on time wasted studying
          concepts you already know, and help you to focus on those that are more
          challenging. Simply <a href="/users/sign_up">sign up</a> to get started!
       </p>

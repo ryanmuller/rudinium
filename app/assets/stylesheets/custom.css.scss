@@ -59,7 +59,9 @@ form.new_spaceable_memory { display: inline; }
 #navigation-column { position: fixed; top: 75px; }
 
 .help {
-  p { margin-bottom: 1em; }
+  p { 
+    margin-bottom: 1em; font-size: 1.5em; line-height: 1.6em;
+  }
   h2 { margin-bottom: .6em; }
 }
 
