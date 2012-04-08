@@ -25,6 +25,7 @@ class Rudini.Routers.ItemsRouter extends Backbone.Router
     window_height = $(window).height()
     sidebar_height = window_height - 150
     $("#item-nav-list").height(sidebar_height)
+    MathJax.Hub.Queue(["Typeset",MathJax.Hub,"item-nav-list"])
 
   index: ->
     this.renderSidebar()

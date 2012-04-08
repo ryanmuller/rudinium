@@ -31,7 +31,7 @@ $(document).ready(() ->
   $(window).resize(() ->
     window_height = $(window).height()
     sidebar_height = window_height - 150
-    $("#item-nav-list").height(sidebar_height)
+    $("#item-nav-list").height(sidebar_height))
   )
 
 
