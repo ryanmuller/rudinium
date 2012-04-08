@@ -42,5 +42,5 @@ class Rudini.Views.Page.SidebarView extends Backbone.View
   render: =>
     $(@el).html(@template(items: @options.items.toJSON() ))
     @addAll()
-
+    
     return this

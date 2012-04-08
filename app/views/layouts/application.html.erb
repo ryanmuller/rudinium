@@ -36,6 +36,7 @@
                     <li><%= link_to 'Login', new_user_session_path %></li>
                     <li><%= link_to 'Sign up', new_user_registration_path %></li>
                   <% end %>
+                  <li><%= link_to "Help", "/#/help" %></li>
                 </ul>
               </div>
             </div>
@@ -45,12 +46,12 @@
     </div>
 
     <div class="container">
-    <div class="row">
+    <!-- <div class="row">
       <div class="span12" id="alert-content">
         <p><%= notice %></p>
         <p><%= alert %></p>
       </div>
-    </div>
+    </div> -->
     <div class="row">
       <div class="span12" id="main-content">
         <%= yield %>

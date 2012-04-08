@@ -3,22 +3,21 @@
   <h2><span class="label" ><%= label %></span><%= name %></h2>
   <p><%= content %></p>
 
-  <div class="item-button-panel">
-  
-    <% if ($("#user-account").attr("data-auth") == "logged_in") { %>
-      <div class="item-study-info">
-        <% if (! study_info['studying']){ %>
-          <a href="#" class="btn btn-small study-btn" data-itemid="<%= id %>"><i class="icon-plus"></i> Study</a>
-        <% } else { %>
-          <% if (study_info['due']) { %>
-            <button class="btn btn-small btn-danger disabled">Due</button>
+    <div class="item-button-panel">
+      <% if ($("#user-account").attr("data-auth") == "logged_in") { %>
+        <div class="item-study-info">
+          <% if (! study_info['studying']){ %>
+            <a href="#" class="btn btn-small study-btn" data-itemid="<%= id %>"><i class="icon-plus"></i> Study</a>
           <% } else { %>
-            <button class="btn btn-small disabled">Learned</button>
+            <% if (study_info['due']) { %>
+              <button class="btn btn-small btn-danger disabled">Due</button>
+            <% } else { %>
+              <button class="btn btn-small disabled">Learned</button>
+            <% } %>
           <% } %>
-        <% } %>
-      </div>
-    <% } %>
-    <a class="play-btn btn btn-small btn-info" data-videoid="<%= video_id %>" data-start="<%= video_time %>" data-end="<%= video_end %>" href="#"><i class="icon-play icon-white"></i> Watch!</a>
-  </div>
+        </div>
+      <% } %>
+      <a class="play-btn btn btn-small btn-info" data-videoid="<%= video_id %>" data-start="<%= video_time %>" data-end="<%= video_end %>" href="#"><i class="icon-play icon-white"></i> Watch!</a>
+    </div>
 </div>
 

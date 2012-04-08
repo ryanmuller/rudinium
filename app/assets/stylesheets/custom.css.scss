@@ -55,3 +55,10 @@ form.new_spaceable_memory { display: inline; }
 // Lecture things...
 .lecture-title { margin-bottom: 30px; }
 
+// Sidebar - floating...
+#navigation-column { position: fixed; top: 75px; }
+
+.help {
+  p { margin-bottom: 1em; }
+  h2 { margin-bottom: 1em; }
+}
