@@ -1,11 +1,13 @@
 class SpaceableMemoriesController < ApplicationController
-  before_filter :authenticate_user!
+  #before_filter :authenticate_user!
 
   def create
-    @item = Item.find(params[:spaceable_memory][:component_id])
+    #@item = Item.find(params[:spaceable_memory][:component_id])
+    @item = Item.find(params[:memory][:item_id])
     current_user.learn!(@item)
+    @memory = Spaceable::Memory.where(:learner_id => current_user.id, :component_id => @item).first
     respond_to do |format|
-      format.js
+      format.json
     end
   end
 

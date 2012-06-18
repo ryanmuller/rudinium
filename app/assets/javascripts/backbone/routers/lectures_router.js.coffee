@@ -16,6 +16,7 @@ class Rudini.Routers.LecturesRouter extends Backbone.Router
   # input: id (item_id)
   # displays the item alongside lecture video
   showItem: (id) ->
+    console.log('showing lecture item...')
     item = RudiniApp.items.items.get(id)
     @view = new Rudini.Views.Items.ShowView(model: item)
     $("#item-container").html(@view.render().el)

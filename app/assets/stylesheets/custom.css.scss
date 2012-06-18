@@ -55,3 +55,23 @@ form.new_spaceable_memory { display: inline; }
 // Lecture things...
 .lecture-title { margin-bottom: 30px; }
 
+// Sidebar - floating...
+#navigation-column { position: fixed; top: 75px; }
+
+.help {
+  p { 
+    margin-bottom: 1em; font-size: 1.5em; line-height: 1.6em;
+  }
+  h2 { margin-bottom: .6em; }
+}
+
+.null-study {
+  p { font-size: 1.8em; line-height: 1.6em; }
+  margin-top: 30px;
+}
+
+#study-nav-due:hover{
+   background-color:#F89406; 
+}
+
+

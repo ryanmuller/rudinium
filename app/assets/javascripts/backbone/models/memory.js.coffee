@@ -29,3 +29,8 @@ class Rudini.Collections.MemoriesCollection extends Backbone.Collection
   model: Rudini.Models.Memory
   url: '/spaceable_memories'
 
+  due: () ->
+    counter = 0
+    this.each((model) ->
+      counter += 1 if model.get("due") == true) 
+    return counter

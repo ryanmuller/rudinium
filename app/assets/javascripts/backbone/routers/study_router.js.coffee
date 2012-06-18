@@ -45,6 +45,12 @@ class Rudini.Routers.StudyRouter extends Backbone.Router
   loadNextMemory: () ->
     memory = @memories.find((model) ->
       return model.get("due") == true)
+    $("#study-nav-due").text(RudiniApp.study.memories.due())
+    
+
+
+
+    
     
     # if there are no "due" memories, load the null memory
     # (aka, 'you're done studying!')
@@ -62,7 +68,7 @@ class Rudini.Routers.StudyRouter extends Backbone.Router
 
     # if no memory_id, display "done studying" message.
     if id == null
-      $("#quiz-container").html("<p>You don't have anything to study, congrats!</p>")
+      $("#quiz-container").html("<div class='null-study'><p>You don't have anything to study, congrats! &nbsp;Make sure to check back soon.</p><p>In the meantime, feel free to browse the items on the left, or watch some <a href='/#/lectures'>complete lectures</a></p></div>")
       $("#rating-panel").html("")
       return false
     
