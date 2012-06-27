@@ -69,7 +69,7 @@ class Rudini.Routers.ItemsRouter extends Backbone.Router
       <p>
          Rudinium is a packaging of <a href="http://www.amazon.com/Principles-Mathematical-Analysis-Third-Edition/dp/007054235X" target="_blank">Walter Rudin's classic Real Analysis text</a> with the 
          brilliant lectures of <a href="http://www.math.hmc.edu/~su/" target="_blank">Professor Su</a> 
-         of <a href="http://www.hmc.edu" target="_blank">Harvey Mudd College</a>. Think of it as
+         from <a href="http://www.hmc.edu" target="_blank">Harvey Mudd College</a>. Think of it as
          a video dictionary &mdash; you can quickly search the text of definitions, 
          theorems, proofs, etc. from real analysis, and see them explained with examples
          and commentary which illuminate the often opaque nature of the subject.

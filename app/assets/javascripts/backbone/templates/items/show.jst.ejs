@@ -17,7 +17,11 @@
           <% } %>
         </div>
       <% } %>
+      <% if ($('.lecture-title').length > 0) { %>
+      <a class="play-btn btn btn-small btn-info" data-videoid="<%= video_id %>" data-start="<%= video_time %>" data-end="<%= video_end %>" href="#"><i class="icon-play icon-white"></i> Replay!</a>
+      <% } else { %>
       <a class="play-btn btn btn-small btn-info" data-videoid="<%= video_id %>" data-start="<%= video_time %>" data-end="<%= video_end %>" href="#"><i class="icon-play icon-white"></i> Watch!</a>
+      <% } %>
     </div>
 </div>
 

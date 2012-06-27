@@ -7,14 +7,42 @@
       window.RudiniApp = {};
 
       // initializes routers
-      window.RudiniApp.items = new Rudini.Routers.ItemsRouter({items: <%= @items.to_json.html_safe -%>});
+      //window.RudiniApp.items = new Rudini.Routers.ItemsRouter({items: <%= @items.to_json.html_safe -%>});
+      window.RudiniApp.items = new Rudini.Routers.ItemsRouter(window.itemData);
       window.RudiniApp.lectures = new Rudini.Routers.LecturesRouter({lectures: <%= @lectures.to_json.html_safe -%>});
       window.RudiniApp.study = new Rudini.Routers.StudyRouter({memories: <%= @memories.to_json.html_safe -%>, quizzes: <%= @quizzes.to_json.html_safe -%>});
       Backbone.history.start();
       });
+
 $.ajaxSetup({
-      beforeSend: function(xhr) {
-          xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
-            }
-            });
+beforeSend: function(xhr) {
+xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
+}
+});
 </script>
+
+
+<script>
+  function listEntries(root) {
+    var feed = root.feed;
+    var entries = feed.entry || [];
+    var output = {items: []}
+    $.each(entries, function(index, value){
+
+      output.items.push({
+        name: value.gsx$name.$t, 
+        label: value.gsx$label.$t, 
+        content: value.gsx$content.$t, 
+        id: value.gsx$id.$t, 
+        video_id: value.gsx$videoid.$t, 
+        video_time: value.gsx$videotime.$t, 
+        video_end: value.gsx$videoend.$t,
+        item_info: {}
+      });
+    });
+    
+    window.itemData = output;
+  }
+</script>
+
+<script src="http://spreadsheets.google.com/feeds/list/0AjQWBGQVwam3dFZPdC0zYUQ1OUV3aXRvVFkyTWhlTGc/od6/public/values?alt=json-in-script&callback=listEntries"></script>
