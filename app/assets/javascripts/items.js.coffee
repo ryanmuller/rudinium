@@ -9,7 +9,7 @@ document.loadVideo = (videoid, start, end) ->
   clearInterval(document.end_vid)
   console.log(videoid + ", " + start + ", " + end);
 
-  document.vid = Popcorn.youtube('#video', 'http://www.youtube.com/watch?v='+videoid)
+  document.vid = Popcorn.youtube('#video', 'http://www.youtube.com/watch?v='+videoid+'&fs=1')
   document.vid.play(start)
   document.end_vid = setInterval(() ->
     # console.log(document.vid.roundTime() + " " + end)
