@@ -19,6 +19,7 @@ end
 gem 'coffee-rails', '~> 3.1.1'
 gem 'jquery-rails'
 gem 'rails-backbone'
+gem 'popcornjs-rails'
 gem 'rabl'
 
 # To use ActiveModel has_secure_password
