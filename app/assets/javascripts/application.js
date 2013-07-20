@@ -8,7 +8,7 @@
 //= require jquery_ujs
 //= require extensions
 //= require items
-//= require popcorn
+//= require popcorn-complete
 //= require underscore
 //= require backbone
 //= require backbone_rails_sync
