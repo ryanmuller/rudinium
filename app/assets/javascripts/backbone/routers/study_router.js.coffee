@@ -15,6 +15,17 @@ class Rudini.Routers.StudyRouter extends Backbone.Router
   # do we want to have a route to show specific quiz...?
   routes:
     "/study"      	: "index"	# start studying
+    "/koans/:id"    : "koan"
+
+  koan: (id) ->
+    $("#item-container").hide()
+    $("#study-container").show()
+
+    quiz = @quizzes.get(id)
+    console.log quiz
+    @view = new Rudini.Views.Items.KoanView({model: quiz})
+    $("#quiz-container").html(@view.render().el)
+    MathJax.Hub.Queue(["Typeset",MathJax.Hub,"quiz-container"])
 
   # displays the nth quiz in a batch.
   showNthQuiz: (n) ->
