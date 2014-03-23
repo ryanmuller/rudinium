@@ -4,10 +4,22 @@ class Rudini.Views.Items.KoanView extends Backbone.View
   events:
     keypress: 'key'
 
+  nextKoan: ->
+    quizzes = @model.collection
+    currentIndex = quizzes.indexOf(@model)
+    nextKoan = quizzes.at(currentIndex + 1)
+    RudiniApp.study.navigate("koans/#{nextKoan.id}", {trigger: true})
+
   key: (e) ->
     if e.keyCode == 13
-      if $(@el).find('input').val() == @model.get('answer')
-        alert('correct!')
+      $in = $(@el).find('input')
+      if $in.val() == @model.get('answer') # right!
+        @nextKoan()
+      else # wrong!
+        $koanArea = $(@el).find('.quiz .well')
+        $koanArea.css('background-color', '#fcc')
+        $koanArea.fadeOut(0)
+        $koanArea.fadeIn(300)
 
   render: ->
     $el = $(@el)

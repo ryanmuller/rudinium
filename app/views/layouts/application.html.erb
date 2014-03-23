@@ -27,6 +27,7 @@
               <a class="brand" href="/#">Learnstream<%= image_tag "rudinium.png", :style => 'height: 20px; margin: 0 5px 0 5px;' %></a>
               <div class="nav-collapse">
                 <ul class="nav">
+                  <li><%= link_to "Koans", "/#koans" %></li>
                   <li><%= link_to "Lectures", "/#/lectures" %></li>
                   <% if current_user %>
                     <li><a href="/#/study">Study <sup><span class="label label-warning" id="study-nav-due" style="font-size: .8em;"><%= current_user.due_memories.count %></span></sup></a></li>

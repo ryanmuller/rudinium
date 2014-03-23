@@ -32,6 +32,7 @@ class Rudini.Routers.ItemsRouter extends Backbone.Router
    
     none_item = '<div class="item" id="item-none">' +
       '<p>Search for an item on the left!</p>' + 
+      '<p>Or try the <a href="#koans">koans</a></p>' +
       '</div>'
 
     $("#item-container").html(none_item)

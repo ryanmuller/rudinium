@@ -15,7 +15,12 @@ class Rudini.Routers.StudyRouter extends Backbone.Router
   # do we want to have a route to show specific quiz...?
   routes:
     "/study"      	: "index"	# start studying
-    "/koans/:id"    : "koan"
+    "koans"        : "firstKoan"
+    "koans/:id"    : "koan"
+
+  firstKoan: ->
+    # 0th quiz is empty object that I can't get to go away
+    @navigate("koans/#{@quizzes.at(1).id}", {trigger: true})
 
   koan: (id) ->
     $("#item-container").hide()

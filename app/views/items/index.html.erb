@@ -2,17 +2,16 @@
 
 <!-- initializes the backbone.js app -->
 <script type="text/javascript">
-  $(function() {
-      // sets up namespace for backbone app
-      window.RudiniApp = {};
+    // sets up namespace for backbone app
+    window.RudiniApp = {};
 
-      // initializes routers
-      window.RudiniApp.items = new Rudini.Routers.ItemsRouter({items: <%= @items.to_json.html_safe -%>});
-      window.RudiniApp.lectures = new Rudini.Routers.LecturesRouter({lectures: <%= @lectures.to_json.html_safe -%>});
-      window.RudiniApp.study = new Rudini.Routers.StudyRouter({memories: <%= @memories.to_json.html_safe -%>, quizzes: <%= @quizzes.to_json.html_safe -%>});
-      Backbone.history.start();
-      RudiniApp.items.renderSidebar();
-      });
+    // initializes routers
+    window.RudiniApp.items = new Rudini.Routers.ItemsRouter({items: <%= @items.to_json.html_safe -%>});
+    window.RudiniApp.lectures = new Rudini.Routers.LecturesRouter({lectures: <%= @lectures.to_json.html_safe -%>});
+    window.RudiniApp.study = new Rudini.Routers.StudyRouter({memories: <%= @memories.to_json.html_safe -%>, quizzes: <%= @quizzes.to_json.html_safe -%>});
+    Backbone.history.start();
+    RudiniApp.items.renderSidebar();
+
 $.ajaxSetup({
       beforeSend: function(xhr) {
           xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
