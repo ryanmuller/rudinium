@@ -1,10 +1,10 @@
 <div class="item">
     <span class="quiz">
       <div class="well">
-        <%= model.content %>
+        <%= content %>
       </div>
-      <% if (model.video_id) { %>
-        <a class="play-btn btn btn-small btn-info" data-videoid="<%= model.video_id %>" data-start="<%= model.video_time %>" data-end="<%= model.video_end %>" href="#"><i class="icon-play icon-white"></i> Watch!</a>
+      <% if (video_id) { %>
+        <a class="play-btn btn btn-small btn-info" data-videoid="<%= video_id %>" data-start="<%= video_time %>" data-end="<%= video_end %>" href="#"><i class="icon-play icon-white"></i> Watch!</a>
       <% } %>
     </span>
 </div>

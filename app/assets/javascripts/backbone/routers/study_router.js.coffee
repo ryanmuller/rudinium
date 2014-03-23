@@ -22,7 +22,6 @@ class Rudini.Routers.StudyRouter extends Backbone.Router
     $("#study-container").show()
 
     quiz = @quizzes.get(id)
-    console.log quiz
     @view = new Rudini.Views.Items.KoanView({model: quiz})
     $("#quiz-container").html(@view.render().el)
     MathJax.Hub.Queue(["Typeset",MathJax.Hub,"quiz-container"])
