@@ -1,7 +1,21 @@
-<div class="main-page" id="backbone-page"></div><!-- hook for backbone.js app -->
+<div class="main-page row" id="backbone-page">
+  <div class="span4" id="navigation-column"></div>
+
+  <div class="span8" id="main-column">
+    <div class="study-container" id="study-container">
+      <div id="quiz-container"></div>
+      <div id="rating-panel"></div>
+    </div><!-- hook for study -->
+    <div class="item-container" id="item-container"></div><!-- hook for item show -->
+    <div class="video-container well hidden" id="video-container">
+      <div id="video" style="width: 420px; height: 315px; margin: auto;"></div>
+    </div>
+  </div>
+</div><!-- hook for backbone.js app -->
 
 <!-- initializes the backbone.js app -->
 <script type="text/javascript">
+$(document).ready(function() {
     // sets up namespace for backbone app
     window.RudiniApp = {};
 
@@ -11,6 +25,7 @@
     window.RudiniApp.study = new Rudini.Routers.StudyRouter({memories: <%= @memories.to_json.html_safe -%>, quizzes: <%= @quizzes.to_json.html_safe -%>});
     Backbone.history.start();
     RudiniApp.items.renderSidebar();
+});
 
 $.ajaxSetup({
       beforeSend: function(xhr) {

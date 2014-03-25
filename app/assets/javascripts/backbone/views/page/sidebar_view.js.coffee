@@ -3,8 +3,6 @@ Rudini.Views.Page ||= {}
 class Rudini.Views.Page.SidebarView extends Backbone.View
   template: JST["backbone/templates/page/sidebar"]
 
-  className: "row"
-
   events:
     "keyup #search-box" : "search"
 

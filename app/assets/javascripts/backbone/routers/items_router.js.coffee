@@ -18,7 +18,7 @@ class Rudini.Routers.ItemsRouter extends Backbone.Router
 
   renderSidebar: () ->
     @view = new Rudini.Views.Page.SidebarView(items: @items)
-    $("#backbone-page").html(@view.render().el)
+    $("#navigation-column").append(@view.render().el)
 
     # sets height of sidebar to match window size
     # ... there is probably a better (more general) way to do this?
@@ -28,10 +28,8 @@ class Rudini.Routers.ItemsRouter extends Backbone.Router
     MathJax.Hub.Queue(["Typeset",MathJax.Hub,"item-nav-list"])
 
   index: ->
-    this.renderSidebar()
-   
     none_item = '<div class="item" id="item-none">' +
-      '<p>Search for an item on the left!</p>' + 
+      '<p>Search for an item on the left!</p>' +
       '<p>Or try the <a href="#koans">koans</a></p>' +
       '</div>'
 
