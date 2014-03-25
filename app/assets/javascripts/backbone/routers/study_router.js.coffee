@@ -34,6 +34,7 @@ class Rudini.Routers.StudyRouter extends Backbone.Router
     quiz = @quizzes.get(id)
     @view = new Rudini.Views.Items.KoanView({model: quiz})
     $("#quiz-container").html(@view.render().el)
+    @view.focus()
     MathJax.Hub.Queue(["Typeset",MathJax.Hub,"quiz-container"])
 
   # displays the nth quiz in a batch.

@@ -4,6 +4,9 @@ class Rudini.Views.Items.KoanView extends Backbone.View
   events:
     keypress: 'key'
 
+  $in: ->
+    $(@el).find('input')
+
   initialize: ->
     docCookies.setItem("currentKoan", @model.id)
 
@@ -22,14 +25,16 @@ class Rudini.Views.Items.KoanView extends Backbone.View
 
   key: (e) ->
     if e.keyCode == 13
-      $in = $(@el).find('input')
-      if @checkAnswer($in.val(), @model.get('answer'))
+      if @checkAnswer(@$in().val(), @model.get('answer'))
         @nextKoan()
       else # wrong!
         $koanArea = $(@el).find('.quiz .well')
         $koanArea.css('background-color', '#fcc')
         $koanArea.fadeOut(0)
         $koanArea.fadeIn(300)
+
+  focus: ->
+    @$in().focus()
 
   render: ->
     $el = $(@el)
