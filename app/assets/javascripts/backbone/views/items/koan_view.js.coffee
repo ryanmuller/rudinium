@@ -3,12 +3,17 @@ class Rudini.Views.Items.KoanView extends Backbone.View
 
   events:
     keypress: 'key'
+    "click .play-btn" : 'play'
 
   $in: ->
     $(@el).find('input')
 
   initialize: ->
     docCookies.setItem("currentKoan", @model.id)
+
+  play: ->
+    attr = @model.attributes
+    document.loadVideo(attr.video_id, attr.video_time, attr.video_end)
 
   nextKoan: ->
     quizzes = @model.collection
