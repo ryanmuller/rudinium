@@ -4,6 +4,9 @@ class Rudini.Views.Items.KoanView extends Backbone.View
   events:
     keypress: 'key'
 
+  initialize: ->
+    docCookies.setItem("currentKoan", @model.id)
+
   nextKoan: ->
     quizzes = @model.collection
     currentIndex = quizzes.indexOf(@model)

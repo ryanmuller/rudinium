@@ -7,6 +7,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require extensions
+//= require cookies
 //= require items
 //= require popcorn-complete
 //= require underscore

@@ -19,8 +19,13 @@ class Rudini.Routers.StudyRouter extends Backbone.Router
     "koans/:id"    : "koan"
 
   firstKoan: ->
-    # 0th quiz is empty object that I can't get to go away
-    @navigate("koans/#{@quizzes.at(1).id}", {trigger: true})
+    if docCookies.hasItem("currentKoan")
+      koanId = docCookies.getItem("currentKoan")
+    else
+      # 0th quiz is empty object that I can't get to go away
+      koanId = @quizzes.at(1).id
+
+    @navigate("koans/#{koanId}", {trigger: true})
 
   koan: (id) ->
     $("#item-container").hide()
