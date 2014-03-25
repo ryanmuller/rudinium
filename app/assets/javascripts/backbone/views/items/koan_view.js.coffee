@@ -13,10 +13,17 @@ class Rudini.Views.Items.KoanView extends Backbone.View
     nextKoan = quizzes.at(currentIndex + 1)
     RudiniApp.study.navigate("koans/#{nextKoan.id}", {trigger: true})
 
+  normalize: (text) ->
+    text = text.toLowerCase()
+    text = text.replace(/\s/g, "") # remove all whitespace
+
+  checkAnswer: (correct, submitted) ->
+    @normalize(correct) == @normalize(submitted)
+
   key: (e) ->
     if e.keyCode == 13
       $in = $(@el).find('input')
-      if $in.val() == @model.get('answer') # right!
+      if @checkAnswer($in.val(), @model.get('answer'))
         @nextKoan()
       else # wrong!
         $koanArea = $(@el).find('.quiz .well')
