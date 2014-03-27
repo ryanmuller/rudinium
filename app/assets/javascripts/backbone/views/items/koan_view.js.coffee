@@ -55,4 +55,8 @@ class Rudini.Views.Items.KoanView extends Backbone.View
     $in = $('<input>').attr('type','text')
     $blank.replaceWith($in)
 
+    latexTemplate = JST["backbone/templates/items/latex"]()
+    $('#latex-container').html(latexTemplate)
+    MathJax.Hub.Queue(["Typeset",MathJax.Hub,"latex-container"])
+
     return this
