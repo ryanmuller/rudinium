@@ -2,20 +2,14 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
-    
+
 document.loadVideo = (videoid, start, end) ->
   if $(".video-container").hasClass("hidden") then $(".video-container").removeClass("hidden")
-  $('#video').html('')
-  clearInterval(document.end_vid)
 
-  document.vid = Popcorn.youtube('#video', 'http://www.youtube.com/watch?v='+videoid+'&fs=1')
-  document.vid.play(start)
-  document.end_vid = setInterval(() ->
-    if document.vid.roundTime() > end
-      document.vid.pause()
-      clearInterval(document.end_vid)
-  , 1000)
-
+  player.loadVideoById
+    videoId: videoid
+    startSeconds: start
+    endSeconds: end
 
 # clear search box on 'escape', give focus to search box
 $(document).keyup((e) ->
